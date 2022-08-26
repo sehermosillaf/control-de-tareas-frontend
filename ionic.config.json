@@ -1,0 +1,7 @@
+{
+  "name": "control_de_tareas",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
