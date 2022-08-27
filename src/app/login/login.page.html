@@ -16,21 +16,13 @@
   </ion-item>
 
   <ion-item >
-    <ion-label position="floating">Contrsaña</ion-label>
+    <ion-label position="floating">Contraseña</ion-label>
     <ion-input [(ngModel)]="password" type="text" required></ion-input>
   </ion-item>
 
   <ion-item >
     <ion-label position="floating">Confirma contraseña</ion-label>
     <ion-input [(ngModel)]="confirm_password" type="text" required></ion-input>
-  </ion-item>
-
-  <ion-button class="ion-margin-top" type="submit" expand="block" color="light" (click)="iniciarSesion()">
-    Crea una cuenta
-  </ion-button>
-
-  <ion-item class="ion-text-center">
-    <ion-label>O</ion-label>
   </ion-item>
 
   <ion-button color="dark" expand="block" fill="outline" [routerLink]="['/home']">Iniciar Sesión</ion-button>

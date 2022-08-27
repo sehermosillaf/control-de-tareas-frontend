@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  constructor(public router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
   name: string = '';
@@ -16,16 +16,7 @@ export class LoginPage implements OnInit {
   confirm_password: string = '';
 
   iniciarSesion() {
-    alert(
-      this.name +
-        ', ' +
-        this.email +
-        ', ' +
-        this.password +
-        ', ' +
-        this.confirm_password
-    );
-
+    alert(this.name,this.password)
     this.router.navigate(['/home']);
   }
 }
