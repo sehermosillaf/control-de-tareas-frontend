@@ -6,10 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  constructor(public navigator: Navigator) {}
 
-  constructor() { }
+  ngOnInit() {}
+  name: string = '';
+  email: string = '';
+  password: string = '';
+  confirm_password: string = '';
 
-  ngOnInit() {
+  iniciarSesion() {
+    alert(
+      this.name +
+        ', ' +
+        this.email +
+        ', ' +
+        this.password +
+        ', ' +
+        this.confirm_password
+    );
   }
-
 }

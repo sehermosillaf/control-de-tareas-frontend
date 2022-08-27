@@ -1,9 +1,37 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
+  <ion-toolbar color="danger">
+    <ion-title>Control de tareas</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="danger">
+  <ion-item color="danger">
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="name" type="text" required></ion-input>
+  </ion-item>
 
+  <ion-item color="danger">
+    <ion-label position="floating">Correo</ion-label>
+    <ion-input [(ngModel)]="email" type="text" required></ion-input>
+  </ion-item>
+
+  <ion-item color="danger">
+    <ion-label position="floating">Contrsaña</ion-label>
+    <ion-input [(ngModel)]="password" type="text" required></ion-input>
+  </ion-item>
+
+  <ion-item color="danger">
+    <ion-label position="floating">Confirma contraseña</ion-label>
+    <ion-input [(ngModel)]="confirm_password" type="text" required></ion-input>
+  </ion-item>
+
+  <ion-button class="ion-margin-top" type="submit" expand="block" color="light" (click)="iniciarSesion()">
+    Crea una cuenta
+  </ion-button>
+
+  <ion-item color="danger" class="ion-text-center">
+    <ion-label>O</ion-label>
+  </ion-item>
+
+  <ion-button color="dark" expand="block" fill="outline" [routerLink]="['/login']">Iniciar Sesión</ion-button>
 </ion-content>
