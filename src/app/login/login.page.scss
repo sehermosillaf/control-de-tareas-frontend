@@ -1,0 +1,24 @@
+ion-card-content {
+  @media screen {
+    max-width: 820;
+
+    width: 80%;
+    margin: 12px auto;
+  }
+  @media screen {
+    width: 1200;
+
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+ion-button {
+  width: 15%;
+  margin: 0 auto;
+  @media screen {
+    max-width: 412;
+    width: fit-content;
+    margin-top: 20px;
+  }
+}

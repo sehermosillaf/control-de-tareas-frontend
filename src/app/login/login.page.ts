@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,13 +11,13 @@ export class LoginPage implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {}
-  name: string = '';
-  email: string = '';
-  password: string = '';
-  confirm_password: string = '';
+  nombre: any;
+  email: any;
+  password: any;
+  confirm_password: any;
 
   iniciarSesion() {
-    alert(this.name,this.password)
+    console.log(this.nombre);
     this.router.navigate(['/home']);
   }
 }
