@@ -10,17 +10,34 @@ import Swal from 'sweetalert2';
 export class LoginPage implements OnInit {
   constructor(private router: Router) {}
   ngOnInit() {}
-  nombre: any;
+  name: any;
   email: any;
   password: any;
   confirm_password: any;
 
-  validarCamposVacios() {}
+  //valida campos vacios
+  //TODO: Considerar refactorizar
+  validarCamposVacios() {
+    if (
+      this.name > 0 ||
+      this.email > 0 ||
+      this.password > 0 ||
+      this.confirm_password > 0
+    ) {
+      return true;
+    } else {
+      Swal.fire({
+        title: 'Error',
+        text: 'Todos los campos deben ser ingresados',
+        icon: 'error',
+        heightAuto: false,
+      });
+    }
+  }
 
-  iniciarSesion() {
-    console.log(this.nombre, this.email, this.password, this.confirm_password);
+  validarPassword() {
     if (this.password === this.confirm_password) {
-      this.router.navigate(['/home']);
+      return true;
     } else {
       Swal.fire({
         title: 'Error',
@@ -30,6 +47,29 @@ export class LoginPage implements OnInit {
       });
     }
   }
+  //TODO: considerar refactorizar
+  iniciarSesion() {
+    if (this.validarCamposVacios() && this.validarPassword()) {
+      this.router.navigate(['/home']);
+    }
+  }
 
-  validarEmail() {}
+  /* TODO: Buscar formas de validar formularios en Angular
+  validarEmail() {
+    let formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(
+      String(this.email).toLowerCase()
+    );
+
+    if (this.email.match(formatoEmail)) {
+      return true;
+    } else {
+      Swal.fire({
+        title: 'Error',
+        text: 'Formato de correo no valido',
+        icon: 'error',
+        heightAuto: false,
+      });
+    }
+  }
+  */
 }
