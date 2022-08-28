@@ -1,23 +1,24 @@
+ion-card {
+  width: 50%;
+  margin: 10% auto;
+}
+
 ion-card-content {
-  @media screen {
-    max-width: 820;
+  // media querys para disposivitos segun width
+  @media only screen // Galaxy
+  and (device-width: 360px) 
+  and (device-height: 640px) {
 
-    width: 80%;
-    margin: 12px auto;
-  }
-  @media screen {
-    width: 1200;
+    ion-item {
+      background-color: aqua;
+    }
+}
 
-    width: 90%;
-    margin: 0 auto;
-  }
 }
 
 ion-button {
-  width: 15%;
-  margin: 0 auto;
+  margin:auto;
   @media screen {
-    max-width: 412;
     width: fit-content;
     margin-top: 20px;
   }

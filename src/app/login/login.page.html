@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Control de tareas</ion-title>
+    <ion-title class="ion-text-center">Control de tareas</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,7 +16,6 @@
         <ion-label>Correo</ion-label>
         <ion-input [(ngModel)]="email" type="email" required></ion-input>
       </ion-item>
-
       <ion-item>
         <ion-label>Contraseña</ion-label>
         <ion-input [(ngModel)]="password" type="password" required></ion-input>
@@ -31,7 +30,7 @@
         ></ion-input>
       </ion-item>
 
-      <ion-button expand="block" fill="outline" [routerLink]="['/home']"
+      <ion-button expand="block" fill="outline" (click)="iniciarSesion()" (click)="validarEmail()"
         >Iniciar Sesión</ion-button
       >
     </ion-card-content>
