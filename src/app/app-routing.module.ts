@@ -8,19 +8,23 @@ const routes: Routes = [
       import('./home/home.module').then((m) => m.HomePageModule),
   },
   {
+    // Ruta por defecto redirecciona a login
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
     path: 'login',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginPageModule),
-  },  {
-    path: 'vista-admin',
-    loadChildren: () => import('./vista-admin/vista-admin.module').then( m => m.VistaAdminPageModule)
   },
-
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./vista-admin/vista-admin.module').then(
+        (m) => m.VistaAdminPageModule
+      ),
+  },
 ];
 
 @NgModule({

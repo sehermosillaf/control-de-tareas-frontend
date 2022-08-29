@@ -8,29 +8,26 @@
   <ion-card>
     <ion-card-content>
       <ion-item>
-        <ion-label>Nombre</ion-label>
-        <ion-input [(ngModel)]="nombre" type="text" required></ion-input>
+        <ion-input [(ngModel)]="name" type="text" placeholder="Nombre" required></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Correo</ion-label>
-        <ion-input [(ngModel)]="email" type="email" required></ion-input>
+        <ion-input [(ngModel)]="email" type="email" placeholder="Correo" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Contraseña</ion-label>
-        <ion-input [(ngModel)]="password" type="password" required></ion-input>
+        <ion-input [(ngModel)]="password" type="password" placeholder="Contraseña" required></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Confirma contraseña</ion-label>
         <ion-input
           [(ngModel)]="confirm_password"
           type="password"
+          placeholder="Confirmar contraseña"
           required
         ></ion-input>
       </ion-item>
 
-      <ion-button expand="block" fill="outline" (click)="iniciarSesion()" (click)="validarEmail()"
+      <ion-button expand="block" fill="outline" (click)="iniciarSesion()"
         >Iniciar Sesión</ion-button
       >
     </ion-card-content>
