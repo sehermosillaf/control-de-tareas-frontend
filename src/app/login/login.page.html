@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <form  #form="ngForm" (ngSubmit)="onSubmit(form)" align="center">
+  <form  #form="ngForm" (ngSubmit)="onSubmit()" align="center">
     <ion-grid >
       <ion-row class="ion-justify-content-center">
         <ion-col size ="12" size-md="10" size-lg="5" size-xs="11">
@@ -17,7 +17,7 @@
               <ion-input name="name" type="text" placeholder="nombre de usuario" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="email" type="email" placeholder="correo" ngModel required></ion-input>
+              <ion-input name="email" type="email" placeholder="correo" [(ngModel)]="email" required></ion-input>
             </ion-item>
             <ion-item>
               <ion-input name="password" type="password" placeholder="contraseña" ngModel required></ion-input>
