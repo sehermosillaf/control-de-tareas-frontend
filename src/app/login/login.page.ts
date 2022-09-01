@@ -29,19 +29,17 @@ export class LoginPage implements OnInit {
   validarEmail(email) {
     const regex = new RegExp('^(.+)@(.+)$', 'i');
     let result = regex.test(email);
-    if (result) {
-      return true;
-    } else {
+    if (result) return true;
+    else {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'El formato del correo no es correcto!',
+        text: 'El formato del correo no es correcto',
         heightAuto: false, // resuelve problema con ionic
       });
     }
   }
   onSubmit() {
-    //validaciones
     console.log(this.email);
     if (this.validarEmail(this.email)) {
       this.showLoading();
