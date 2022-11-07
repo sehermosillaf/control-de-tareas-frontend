@@ -5,26 +5,24 @@
 </ion-header>
 
 <ion-content>
-  <form  #form="ngForm" (ngSubmit)="onSubmit()" align="center">
-    <ion-grid >
+  <form #form="ngForm" (ngSubmit)="onSubmit()" align="center">
+    <ion-grid>
       <ion-row class="ion-justify-content-center">
-        <ion-col size ="12" size-md="10" size-lg="5" size-xs="11">
+        <ion-col size="12" size-md="10" size-lg="5" size-xs="11">
           <div class="form-title">
             <h3>Iniciar sesión</h3>
           </div>
           <div padding>
             <ion-item>
-              <ion-input name="name" type="text" placeholder="nombre de usuario" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
               <ion-input name="email" type="email" placeholder="correo" [(ngModel)]="email" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="password" type="password" placeholder="contraseña" ngModel required></ion-input>
+              <ion-input name="password" type="password" placeholder="contraseña" [(ngModel)]="password" required>
+              </ion-input>
             </ion-item>
           </div>
           <div padding>
-            <ion-button  type="submit" [disabled]="form.invalid" expand="fill">Acceder</ion-button>
+            <ion-button type="submit" [disabled]="form.invalid" expand="fill">Acceder</ion-button>
           </div>
         </ion-col>
       </ion-row>

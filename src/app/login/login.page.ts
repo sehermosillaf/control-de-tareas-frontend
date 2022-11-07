@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 //import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,41 +12,40 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  constructor(private router: Router, private loadingCtrl: LoadingController) {}
-  ngOnInit() {}
-  name: any;
   email: any;
   password: any;
-  confirm_password: any;
+  user: any;
+
+  constructor(
+    public router: Router,
+    private loadingCtrl: LoadingController,
+    public auth: AuthService
+  ) {}
+  ngOnInit() {}
 
   async showLoading() {
     const loading = await this.loadingCtrl.create({
       message: 'Iniciando sesion...',
-      duration: 2000,
+      duration: 1000,
     });
 
     loading.present();
   }
-  validarEmail(email) {
-    const regex = new RegExp('^(.+)@(.+)$', 'i');
-    let result = regex.test(email);
-    if (result) {
-      return true;
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'El formato del correo no es correcto!',
-        heightAuto: false, // resuelve problema con ionic
-      });
-    }
-  }
+  // validarEmail(email) {
+  //   const regex = new RegExp('^(.+)@(.+)$', 'i');
+  //   const result = regex.test(email);
+  //   if (!result) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
   onSubmit() {
-    //validaciones
-    console.log(this.email);
-    if (this.validarEmail(this.email)) {
+    this.auth.login(this.email, this.password).subscribe((resp) => {
+      this.user = resp;
+      console.log(resp);
       this.showLoading();
       this.router.navigate(['/home']);
-    }
+    });
   }
 }

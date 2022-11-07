@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>¡Bienvenido, {{user.nombre}}! </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +12,26 @@
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      <p>{{user.nombre}}<p>
+      <p>{{user.apellido}}<p>
+      <p>{{user.roles[0]?.nombre}}<p>
+    <ion-card size-md="10" size-lg="4" size-xs="11">
+      <ion-card-header>
+        <ion-card-title>Gestión de usuarios</ion-card-title>
+      </ion-card-header>
+      <ion-button fill="clear">Crear usuario</ion-button>
+      <ion-button fill="clear">Listar usuarios</ion-button>
+      <ion-button fill="clear">Eliminar usuario</ion-button>
+      <ion-button fill="clear">Modificar usuario</ion-button>
+    </ion-card>
+    <ion-card size-md="10" size-lg="5" size-xs="11">
+      <ion-card-header>
+        <ion-card-title>Gestión de roles</ion-card-title>
+      </ion-card-header>
+      <ion-button fill="clear">Crear rol</ion-button>
+      <ion-button fill="clear">Listar roles</ion-button>
+      <ion-button fill="clear">Eliminar rol</ion-button>
+      <ion-button fill="clear">Modificar rol</ion-button>
+    </ion-card>
   </div>
 </ion-content>
