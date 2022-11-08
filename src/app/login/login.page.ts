@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
   email: any;
   password: any;
   user: any;
+  error: '';
 
   constructor(
     public router: Router,
@@ -43,9 +44,16 @@ export class LoginPage implements OnInit {
   onSubmit() {
     this.auth.login(this.email, this.password).subscribe((resp) => {
       this.user = resp;
-      console.log(resp);
       this.showLoading();
       this.router.navigate(['/home']);
-    });
+    },
+    error => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Email o contraseña'
+      });
+    }
+    );
   }
 }

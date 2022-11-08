@@ -30,3 +30,8 @@ ion-card-header.ios {
   display: flex;
   flex-flow: column-reverse;
 }
+
+ion-card {
+  display: block;
+  width: fit-content;
+}

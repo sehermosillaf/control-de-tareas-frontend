@@ -7,10 +7,14 @@ import { UsuarioI } from '../models/user.interfaces';
   providedIn: 'root',
 })
 export class UsersService {
-  constructor(public http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
 
   getUserByID(id): Observable<UsuarioI[]> {
     return this.http.get<UsuarioI[]>(`http://localhost:8080/api/users/${id}`);
+  }
+
+  addUser(newUser: UsuarioI): Observable<object>{
+    return this.http.post('http://localhost:8080/api/users/',newUser);
   }
 }

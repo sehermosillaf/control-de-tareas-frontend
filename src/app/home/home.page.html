@@ -5,33 +5,60 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-      <p>{{user.nombre}}<p>
-      <p>{{user.apellido}}<p>
-      <p>{{user.roles[0]?.nombre}}<p>
-    <ion-card size-md="10" size-lg="4" size-xs="11">
+  <div class="ion-padding">
+    
+    <ion-card>
       <ion-card-header>
-        <ion-card-title>Gestión de usuarios</ion-card-title>
+        <ion-card-title>{{user.nombre}} {{user.apellido}}</ion-card-title>
+        <ion-card-subtitle>{{user.email}} - {{user.roles[0]?.nombre}}</ion-card-subtitle>
       </ion-card-header>
-      <ion-button fill="clear">Crear usuario</ion-button>
-      <ion-button fill="clear">Listar usuarios</ion-button>
-      <ion-button fill="clear">Eliminar usuario</ion-button>
-      <ion-button fill="clear">Modificar usuario</ion-button>
     </ion-card>
-    <ion-card size-md="10" size-lg="5" size-xs="11">
-      <ion-card-header>
-        <ion-card-title>Gestión de roles</ion-card-title>
-      </ion-card-header>
-      <ion-button fill="clear">Crear rol</ion-button>
-      <ion-button fill="clear">Listar roles</ion-button>
-      <ion-button fill="clear">Eliminar rol</ion-button>
-      <ion-button fill="clear">Modificar rol</ion-button>
-    </ion-card>
+
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col>
+          <ion-card size-md="10" size-lg="5" size-xs="11" size-xl="2">
+            <ion-card-header>
+              <ion-card-title>Gestión de usuarios</ion-card-title>
+            </ion-card-header>
+            <ion-button fill="clear">Crear usuario</ion-button>
+            <ion-button fill="clear">Listar usuarios</ion-button>
+            <ion-button fill="clear">Eliminar usuario</ion-button>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card size-md="10" size-lg="5" size-xs="11" size-xl="2">
+            <ion-card-header>
+              <ion-card-title>Gestión de roles</ion-card-title>
+            </ion-card-header>
+            <ion-button fill="clear">Crear roles</ion-button>
+            <ion-button fill="clear">Listar roles</ion-button>
+            <ion-button fill="clear">Eliminar roles</ion-button>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card size-md="10" size-lg="5" size-xs="11" size-xl="2">
+            <ion-card-header>
+              <ion-card-title>Gestión de unidades</ion-card-title>
+            </ion-card-header>
+            <ion-button fill="clear">Crear unidad</ion-button>
+            <ion-button fill="clear">Listar unidad</ion-button>
+            <ion-button fill="clear">Eliminar unidad</ion-button>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card size-md="10" size-lg="5" size-xs="11" size-xl="2">
+            <ion-card-header>
+              <ion-card-title>Gestión de flujos</ion-card-title>
+            </ion-card-header>
+            <ion-button fill="clear">Crear flujo</ion-button>
+            <ion-button fill="clear">Listar flujos</ion-button>
+            <ion-button fill="clear">Eliminar flujo</ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
   </div>
 </ion-content>
