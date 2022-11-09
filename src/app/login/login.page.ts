@@ -51,7 +51,8 @@ export class LoginPage implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Email o contraseña'
+        text: 'Email o contraseña',
+        heightAuto: false
       });
     }
     );

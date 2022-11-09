@@ -22,9 +22,32 @@
             <ion-card-header>
               <ion-card-title>Gestión de usuarios</ion-card-title>
             </ion-card-header>
-            <ion-button fill="clear">Crear usuario</ion-button>
-            <ion-button fill="clear">Listar usuarios</ion-button>
-            <ion-button fill="clear">Eliminar usuario</ion-button>
+            <form #form="ngForm"align="center">
+                    <div padding>
+                      <ion-item>
+                        <ion-input name="nombre" type="text" placeholder="nombre" [(ngModel)]="nombre" required></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-input name="apellido" type="text" placeholder="apellido" [(ngModel)]="apellido" required></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-input name="email" type="email" placeholder="correo" [(ngModel)]="email" required></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-input name="password" type="password" placeholder="contraseña" [(ngModel)]="password" required>
+                        </ion-input>
+                      </ion-item>
+                    </div>
+                    <div padding>
+                      <ion-button type="submit" [disabled]="form.invalid" expand="fill">Crear</ion-button>
+                    </div>
+            </form>
+          </ion-card>
+          <ion-card *ngFor="let user of userList">
+            <ion-card-header>
+              <ion-card-title>{{user.nombre}} {{user.apellido}}</ion-card-title>
+              <ion-card-subtitle>{{user.email}} - {{user.roles[0]?.nombre}}</ion-card-subtitle>
+            </ion-card-header>
           </ion-card>
         </ion-col>
         <ion-col>
@@ -59,6 +82,5 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-
   </div>
 </ion-content>

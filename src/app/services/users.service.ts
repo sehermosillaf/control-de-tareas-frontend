@@ -9,12 +9,14 @@ import { UsuarioI } from '../models/user.interfaces';
 export class UsersService {
   constructor(private http: HttpClient) {}
 
-
   getUserByID(id): Observable<UsuarioI[]> {
     return this.http.get<UsuarioI[]>(`http://localhost:8080/api/users/${id}`);
   }
+  getUsers(): Observable<UsuarioI>{
+    return this.http.get<UsuarioI>('http://localhost:8080/api/users/');
+  }
 
-  addUser(newUser: UsuarioI): Observable<object>{
-    return this.http.post('http://localhost:8080/api/users/',newUser);
+  addUser(newUser: UsuarioI): Observable<object> {
+    return this.http.post('http://localhost:8080/api/users/', newUser);
   }
 }
