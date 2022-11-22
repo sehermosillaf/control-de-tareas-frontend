@@ -2,85 +2,32 @@
   <ion-toolbar>
     <ion-title>¡Bienvenido, {{user.nombre}}! </ion-title>
   </ion-toolbar>
+  <ion-segment value="all">
+      <ion-segment-button value="all">
+        Usuarios
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        Tareas
+      </ion-segment-button>
+    </ion-segment>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <div class="ion-padding">
-    
-    <ion-card>
+  <div class="ion-margin">
+    <ion-card *ngFor="let user of userList">
       <ion-card-header>
-        <ion-card-title>{{user.nombre}} {{user.apellido}}</ion-card-title>
-        <ion-card-subtitle>{{user.email}} - {{user.roles[0]?.nombre}}</ion-card-subtitle>
+        <ion-card-title>{{user.nombre + ' ' + user.apellido}}</ion-card-title>
+        <ion-card-subtitle>{{user.email}}</ion-card-subtitle>
+        <ion-card-subtitle>Rol : {{user.roles[0]?.nombre}}</ion-card-subtitle>
+        <ion-card-subtitle>Empresa: {{user.empresa.nombre}}</ion-card-subtitle>
+        <ion-list>
+          <ion-item>
+            <ion-badge slot="end">1</ion-badge>
+            <ion-label (click)="tareasClick()">Tareas asignadas</ion-label>
+          </ion-item>
+        </ion-list>
       </ion-card-header>
+        
     </ion-card>
-
-    <ion-grid [fixed]="true">
-      <ion-row>
-        <ion-col>
-          <ion-card size-md="10" size-lg="5" size-xs="11" size-xl="2">
-            <ion-card-header>
-              <ion-card-title>Gestión de usuarios</ion-card-title>
-            </ion-card-header>
-            <form #form="ngForm"align="center">
-                    <div padding>
-                      <ion-item>
-                        <ion-input name="nombre" type="text" placeholder="nombre" [(ngModel)]="nombre" required></ion-input>
-                      </ion-item>
-                      <ion-item>
-                        <ion-input name="apellido" type="text" placeholder="apellido" [(ngModel)]="apellido" required></ion-input>
-                      </ion-item>
-                      <ion-item>
-                        <ion-input name="email" type="email" placeholder="correo" [(ngModel)]="email" required></ion-input>
-                      </ion-item>
-                      <ion-item>
-                        <ion-input name="password" type="password" placeholder="contraseña" [(ngModel)]="password" required>
-                        </ion-input>
-                      </ion-item>
-                    </div>
-                    <div padding>
-                      <ion-button type="submit" [disabled]="form.invalid" expand="fill">Crear</ion-button>
-                    </div>
-            </form>
-          </ion-card>
-          <ion-card *ngFor="let user of userList">
-            <ion-card-header>
-              <ion-card-title>{{user.nombre}} {{user.apellido}}</ion-card-title>
-              <ion-card-subtitle>{{user.email}} - {{user.roles[0]?.nombre}}</ion-card-subtitle>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col>
-          <ion-card size-md="10" size-lg="5" size-xs="11" size-xl="2">
-            <ion-card-header>
-              <ion-card-title>Gestión de roles</ion-card-title>
-            </ion-card-header>
-            <ion-button fill="clear">Crear roles</ion-button>
-            <ion-button fill="clear">Listar roles</ion-button>
-            <ion-button fill="clear">Eliminar roles</ion-button>
-          </ion-card>
-        </ion-col>
-        <ion-col>
-          <ion-card size-md="10" size-lg="5" size-xs="11" size-xl="2">
-            <ion-card-header>
-              <ion-card-title>Gestión de unidades</ion-card-title>
-            </ion-card-header>
-            <ion-button fill="clear">Crear unidad</ion-button>
-            <ion-button fill="clear">Listar unidad</ion-button>
-            <ion-button fill="clear">Eliminar unidad</ion-button>
-          </ion-card>
-        </ion-col>
-        <ion-col>
-          <ion-card size-md="10" size-lg="5" size-xs="11" size-xl="2">
-            <ion-card-header>
-              <ion-card-title>Gestión de flujos</ion-card-title>
-            </ion-card-header>
-            <ion-button fill="clear">Crear flujo</ion-button>
-            <ion-button fill="clear">Listar flujos</ion-button>
-            <ion-button fill="clear">Eliminar flujo</ion-button>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
   </div>
 </ion-content>

@@ -22,29 +22,22 @@ export class LoginPage implements OnInit {
     private loadingCtrl: LoadingController,
     public auth: AuthService
   ) {}
+
   ngOnInit() {}
 
-  async showLoading() {
-    const loading = await this.loadingCtrl.create({
-      message: 'Iniciando sesion...',
-      duration: 1000,
-    });
-
-    loading.present();
-  }
-  // validarEmail(email) {
-  //   const regex = new RegExp('^(.+)@(.+)$', 'i');
-  //   const result = regex.test(email);
-  //   if (!result) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
+  // async showLoading() {
+  //   const loading = await this.loadingCtrl.create({
+  //     message: 'Iniciando sesion...',
+  //     duration: 1000,
+  //   });
+  //   loading.present();
   // }
+
   onSubmit() {
     this.auth.login(this.email, this.password).subscribe((resp) => {
       this.user = resp;
-      this.showLoading();
+      localStorage.setItem('userID',this.user.id);
+      // this.showLoading();
       this.router.navigate(['/home']);
     },
     error => {
@@ -57,4 +50,13 @@ export class LoginPage implements OnInit {
     }
     );
   }
+    // validarEmail(email) {
+  //   const regex = new RegExp('^(.+)@(.+)$', 'i');
+  //   const result = regex.test(email);
+  //   if (!result) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
 }

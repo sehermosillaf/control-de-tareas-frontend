@@ -7,16 +7,22 @@ import { UsuarioI } from '../models/user.interfaces';
   providedIn: 'root',
 })
 export class UsersService {
+  url = 'http://localhost:8080/api/users/';
   constructor(private http: HttpClient) {}
 
   getUserByID(id): Observable<UsuarioI[]> {
-    return this.http.get<UsuarioI[]>(`http://localhost:8080/api/users/${id}`);
+    return this.http.get<UsuarioI[]>(this.url + id);
   }
-  getUsers(): Observable<UsuarioI>{
-    return this.http.get<UsuarioI>('http://localhost:8080/api/users/');
+  getAllUsers(): Observable<UsuarioI>{
+    return this.http.get<UsuarioI>(this.url);
   }
-
   addUser(newUser: UsuarioI): Observable<object> {
-    return this.http.post('http://localhost:8080/api/users/', newUser);
+    return this.http.post(this.url, newUser);
+  }
+  deleteUser(id) {
+    return this.http.delete(this.url + id);
+  }
+  editUser(id,user: UsuarioI){
+    return this.http.put(this.url + id,user);
   }
 }

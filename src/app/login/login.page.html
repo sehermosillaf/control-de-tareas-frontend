@@ -14,15 +14,19 @@
           </div>
           <div padding>
             <ion-item>
+              <ion-icon name="mail-outline"></ion-icon>
               <ion-input name="email" type="email" placeholder="correo" [(ngModel)]="email" required></ion-input>
             </ion-item>
             <ion-item>
+              <ion-icon name="lock-closed-outline"></ion-icon>
               <ion-input name="password" type="password" placeholder="contraseña" [(ngModel)]="password" required>
               </ion-input>
             </ion-item>
           </div>
           <div padding>
-            <ion-button type="submit" [disabled]="form.invalid" expand="fill">Acceder</ion-button>
+            <ion-button type="submit" [disabled]="form.invalid" expand="fill">Ingresar<ion-icon
+                name="caret-forward-outline"></ion-icon>
+            </ion-button>
           </div>
         </ion-col>
       </ion-row>
