@@ -16,6 +16,12 @@ export class UsersService {
   getAllUsers(): Observable<UsuarioI>{
     return this.http.get<UsuarioI>(this.url);
   }
+  getAdmins(): Observable<UsuarioI> {
+    return this.http.get<UsuarioI>(this.url + '/admins');
+  }
+  getFunc(): Observable<UsuarioI> {
+    return this.http.get<UsuarioI>(this.url + '/func');
+  }
   addUser(newUser: UsuarioI): Observable<object> {
     return this.http.post(this.url, newUser);
   }

@@ -8,9 +8,13 @@ import { TareaI } from '../models/taks.interface';
 })
 export class TasksService {
 
+  private url = 'http://localhost:8080/api/tareas/';
   constructor(private http: HttpClient) {
    }
   getAllTasks(): Observable<TareaI>{
-    return this.http.get<TareaI>('http://localhost:8080/api/tareas/');
+    return this.http.get<TareaI>(this.url);
+  }
+  getTasksByUser(id): Observable<TareaI>{
+    return this.http.get<TareaI>(this.url + `user/${id}`);
   }
 }

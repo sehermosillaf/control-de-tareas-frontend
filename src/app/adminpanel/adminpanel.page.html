@@ -1,9 +1,23 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>adminpanel</ion-title>
+    <ion-title>¡Bienvenido, {{user.nombre}}!</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-segment class="ion-padding-top">Panel de administrador</ion-segment>
 
+  <ion-card>
+    <ion-card-header *ngFor="let users of userList">
+      <ion-card-title>{{users.nombre}}</ion-card-title>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Here's a small text description for the card content. Nothing more, nothing less.
+    </ion-card-content>
+  
+    <ion-button fill="clear">Action 1</ion-button>
+    <ion-button fill="clear">Action 2</ion-button>
+  </ion-card>
 </ion-content>

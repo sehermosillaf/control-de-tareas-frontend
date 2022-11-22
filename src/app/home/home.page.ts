@@ -7,6 +7,7 @@ import { ModalController } from '@ionic/angular';
 import { JsonPipe } from '@angular/common';
 import Swal from 'sweetalert2';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { TasksService } from '../services/tasks.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -15,11 +16,12 @@ import { OverlayEventDetail } from '@ionic/core/components';
 export class HomePage implements OnInit {
   user: any;
   userList: any;
+  tasksUser: any;
   currentUserSource: any;
   lsUserID = localStorage.getItem('userID');
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   name: string;
-  constructor(private userService: UsersService, private http: HttpClient,private modal: ModalController) {}
+  constructor(private userService: UsersService, private modal: ModalController, private taskService: TasksService) {}
 
   ngOnInit() {
     this.userService.getUserByID(this.lsUserID).subscribe((resp) => {
@@ -27,6 +29,9 @@ export class HomePage implements OnInit {
     });
     this.userService.getAllUsers().subscribe((resp) => {
       this.userList = resp;
+    });
+    this.taskService.getTasksByUser(this.lsUserID).subscribe((resp) => {
+      this.tasksUser = resp;
     });
   }
   cardClick(){
