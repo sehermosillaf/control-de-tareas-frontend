@@ -37,8 +37,23 @@ export class LoginPage implements OnInit {
     this.auth.login(this.email, this.password).subscribe((resp) => {
       this.user = resp;
       localStorage.setItem('userID',this.user.id);
+      console.log(this.user.roles[0]?.nombre);
       // this.showLoading();
-      this.router.navigate(['/home']);
+      if(this.user.roles[0]?.id === 1) {
+        this.router.navigate(['/adminpanel']);
+      }
+      else if (this.user.roles[0]?.id === 2){
+        this.router.navigate(['/home']);
+      }
+      else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No posees rol asignado',
+          heightAuto: false
+        });
+      }
+
     },
     error => {
       Swal.fire({

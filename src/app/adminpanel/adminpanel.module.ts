@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { VistaAdminPageRoutingModule } from './vista-admin-routing.module';
+import { AdminpanelPageRoutingModule } from './adminpanel-routing.module';
 
-import { VistaAdminPage } from './vista-admin.page';
+import { AdminpanelPage } from './adminpanel.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    VistaAdminPageRoutingModule
+    AdminpanelPageRoutingModule
   ],
-  declarations: [VistaAdminPage]
+  declarations: [AdminpanelPage]
 })
-export class VistaAdminPageModule {}
+export class AdminpanelPageModule {}
