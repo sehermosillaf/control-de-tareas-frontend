@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { UsuarioI } from '../models/user.interfaces';
 import { ModalController } from '@ionic/angular';
-import { JsonPipe } from '@angular/common';
 import Swal from 'sweetalert2';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { TasksService } from '../services/tasks.service';
+import { IonModal } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -19,7 +17,7 @@ export class HomePage implements OnInit {
   tasksUser: any;
   currentUserSource: any;
   lsUserID = localStorage.getItem('userID');
-  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  comentario: string;
   name: string;
   constructor(private userService: UsersService, private modal: ModalController, private taskService: TasksService) {}
 
@@ -34,34 +32,37 @@ export class HomePage implements OnInit {
       this.tasksUser = resp;
     });
   }
-  cardClick(){
-    Swal.fire({
-      icon: 'info',
-      title: 'a...',
-      text: 'aaa',
-      heightAuto: false
-    });
-  }
-  deleteUser(id) {
-    Swal.fire({
-      title: 'Estas seguro de eliminar este usuario?',
-      text: 'No podras de revertir este cambio!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, eliminar usuario!',
-      heightAuto: false
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title:'Eliminado!',
-          text: 'Este usuario a sido eliminado.',
-          icon:'success',
-          heightAuto: false
-        });
-      }
-    });
+  // cardClick(){
+  //   Swal.fire({
+  //     icon: 'info',
+  //     title: 'a...',
+  //     text: 'aaa',
+  //     heightAuto: false
+  //   });
+  // }
+  // deleteUser(id) {
+  //   Swal.fire({
+  //     title: 'Estas seguro de eliminar este usuario?',
+  //     text: 'No podras de revertir este cambio!',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'Si, eliminar usuario!',
+  //     heightAuto: false
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       Swal.fire({
+  //         title:'Eliminado!',
+  //         text: 'Este usuario a sido eliminado.',
+  //         icon:'success',
+  //         heightAuto: false
+  //       });
+  //     }
+  //   });
+  // }
+  declineTask(){
+
   }
 
   tareasClick(){
@@ -88,7 +89,7 @@ export class HomePage implements OnInit {
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      this.message = `Hello, ${ev.detail.data}!`;
+      this.comentario = `Hello, ${ev.detail.data}!`;
     }
   }
   //cerrar session - localstorage.

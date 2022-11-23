@@ -2,27 +2,56 @@
   <ion-toolbar>
     <ion-title>¡Bienvenido, {{user.nombre}}! </ion-title>
   </ion-toolbar>
-  <ion-segment value="all">
-      <ion-segment-button value="all">
-        Usuarios
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        Tareas
-      </ion-segment-button>
-    </ion-segment>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="ion-margin">
-    <ion-card *ngFor="let tasks of tasksUser">
-      <ion-card-header>
-        <ion-card-title>{{tasks.nombre}}</ion-card-title>
-        <ion-card-subtitle>{{tasks.descripcion}}</ion-card-subtitle>
-        <ion-card-subtitle>{{tasks.fechaCreacion}}</ion-card-subtitle>
-        <ion-card-subtitle>{{tasks.fechaInicio}}</ion-card-subtitle>
-        <ion-card-subtitle>{{tasks.fechaTermino}}</ion-card-subtitle>
-        <ion-card-subtitle>{{tasks.estado.nombre}}</ion-card-subtitle>
-      </ion-card-header>
-    </ion-card>
-  </div>
+    <ion-col size="4">
+      <ion-card *ngFor="let tasks of tasksUser" class="ion-margin">
+        <ion-card-header>
+          <ion-card-title>{{tasks.nombre}}</ion-card-title>
+          <ion-card-subtitle>Descripción: {{tasks.descripcion}}</ion-card-subtitle>
+          <ion-card-subtitle>Fecha creación: {{tasks.fechaCreacion}}</ion-card-subtitle>
+          <ion-card-subtitle>Fecha inicio:{{tasks.fechaInicio}}</ion-card-subtitle>
+          <ion-card-subtitle>Fecha termino: {{tasks.fechaTermino}}</ion-card-subtitle>
+          <ion-card-subtitle>Estado: {{tasks.estado.id}}</ion-card-subtitle>
+          <ion-card-subtitle>Porcentaje: {{tasks.estado.porcentaje * 100}}%</ion-card-subtitle>
+        </ion-card-header>
+        <ion-button id="open-modal" expand="fill" color="danger" class="ion-margin">Rechazar</ion-button>
+        <ion-button id="open-modal" expand="fill" color="primary" class="ion-margin">Ver detalles</ion-button>
+        <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+          <ng-template>
+            <ion-header>
+              <ion-toolbar>
+                <ion-buttons slot="start">
+                  <ion-button (click)="cancel()">Cancelar</ion-button>
+                </ion-buttons>
+                <ion-title>Rechazar tarea</ion-title>
+                <ion-buttons slot="end">
+                  <ion-button (click)="confirm()" [strong]="true">Confirmar</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+              <ion-item>
+                <ion-label position="stacked">Comentario</ion-label>
+                <ion-input type="text" placeholder="Escribe tu comentario..." [(ngModel)]="comentario"></ion-input>
+              </ion-item>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-card>
+    </ion-col>
+    <ion-col size="5">
+      <ion-card *ngFor="let tasks of tasksUser" class="subcard">
+        <ion-card class="ion-margin">
+          <ion-card-header *ngFor="let subtasks of tasks.subtareas">
+            <ion-card-title>{{subtasks.nombre}}</ion-card-title>
+            <ion-card-subtitle>{{subtasks.descripcion}}</ion-card-subtitle>
+            <ion-card-subtitle>Fecha creacion:{{subtasks.fechaCreacion}}</ion-card-subtitle>
+            <ion-card-subtitle>Fecha de inicio:{{subtasks.fechaInicio}}</ion-card-subtitle>
+            <ion-card-subtitle>Fecha de termino:{{subtasks.fechaTermino}}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-card>
+    </ion-col>
 </ion-content>
