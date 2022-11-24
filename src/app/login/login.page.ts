@@ -20,10 +20,12 @@ export class LoginPage implements OnInit {
   constructor(
     public router: Router,
     private loadingCtrl: LoadingController,
-    public auth: AuthService
-  ) {}
+    private auth: AuthService
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async showLoading() {
     const loading = await this.loadingCtrl.create({
@@ -33,39 +35,37 @@ export class LoginPage implements OnInit {
     loading.present();
   }
 
-
   onSubmit() {
-    this.auth.login(this.email, this.password).subscribe((resp) => {
-      this.user = resp;
-      localStorage.setItem('userID',this.user.id);
-      // this.showLoading();
-      if(this.user.roles[0]?.id === 1) {
-        this.router.navigate(['/adminpanel']);
-      }
-      else if (this.user.roles[0]?.id === 2){
-        this.router.navigate(['/home']);
-      }
-      else {
+    this.auth.login(this.email, this.password).subscribe(
+      (resp) => {
+        this.user = resp;
+        localStorage.setItem('userID', this.user.id);
+        // this.showLoading();
+        if (this.user.roles[0]?.id === 1) {
+          // this.router.navigate(['/admin']);
+          this.router.navigateByUrl('/admin');
+        } else if (this.user.roles[0]?.id === 2) {
+          this.router.navigate(['/home']);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No posees rol asignado',
+            heightAuto: false,
+          });
+        }
+      },
+      (error) => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'No posees rol asignado',
-          heightAuto: false
+          text: 'Email o contraseña',
+          heightAuto: false,
         });
       }
-
-    },
-    error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Email o contraseña',
-        heightAuto: false
-      });
-    }
     );
   }
-    validarEmail(email) {
+  validarEmail(email) {
     const regex = new RegExp('^(.+)@(.+)$', 'i');
     const result = regex.test(email);
     if (!result) {

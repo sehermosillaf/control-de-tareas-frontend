@@ -12,3 +12,10 @@ ion-card{
   display: block;
   width: fit-content;
 }
+
+@media (max-width: 500px) {
+  ion-card{
+    position: relative;
+    z-index: -1;
+  }
+}

@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     // Ruta por defecto redirecciona a login
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
       import('./login/login.module').then((m) => m.LoginPageModule),
   },
   {
-    path: 'adminpanel',
+    path: 'admin',
     loadChildren: () => import('./adminpanel/adminpanel.module').then( m => m.AdminpanelPageModule)
   },
 

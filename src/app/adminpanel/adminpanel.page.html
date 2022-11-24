@@ -7,11 +7,11 @@
       <ion-title>Bienvenido {{loggedUser.nombre}}!</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content [fullscreen]="true">
+  <ion-content [fullscreen]="true" class="ion-padding ion-margin">
     <ion-segment class="ion-padding-top">Panel de administrador</ion-segment>
     <ion-grid>
       <ion-row>
-        <ion-col>
+        <ion-col size-sm="6" offset-xs>
           <ion-card>
             <app-modal></app-modal>
           </ion-card>
@@ -74,7 +74,7 @@
             <ion-card> </ion-card>
           </ion-card>
         </ion-col>
-        <ion-col>
+        <ion-col size-sm="5" offset-xs>
           <app-modal-unidad></app-modal-unidad>
           <ion-card class="ion-margin ion-justify-content-center">
             <ng-container *ngFor="let units of unitList">
