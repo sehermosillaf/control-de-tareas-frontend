@@ -2,12 +2,14 @@
   <ion-toolbar>
     <ion-title>¡Bienvenido, {{user.nombre}}! </ion-title>
   </ion-toolbar>
+  <app-modal-tarea></app-modal-tarea>
 </ion-header>
 
 <ion-content [fullscreen]="true">
     <ion-col size="4">
       <ion-card *ngFor="let tasks of tasksUser" class="ion-margin">
         <ion-card-header>
+          
           <ion-card-title>{{tasks.nombre}}</ion-card-title>
           <ion-card-subtitle>Descripción: {{tasks.descripcion}}</ion-card-subtitle>
           <ion-card-subtitle>Fecha creación: {{tasks.fechaCreacion}}</ion-card-subtitle>

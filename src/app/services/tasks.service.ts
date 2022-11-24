@@ -17,4 +17,8 @@ export class TasksService {
   getTasksByUser(id): Observable<TareaI>{
     return this.http.get<TareaI>(this.url + `user/${id}`);
   }
+
+  addTask(newTask){
+    return this.http.post(this.url,newTask);
+  }
 }

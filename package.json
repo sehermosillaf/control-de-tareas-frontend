@@ -27,6 +27,7 @@
     "@ionic/angular": "^6.1.9",
     "angular-storage": "^0.0.15",
     "auth-service-js": "^1.0.0-rc.1",
+    "moment": "^2.29.4",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.4.29",
     "tslib": "^2.2.0",
