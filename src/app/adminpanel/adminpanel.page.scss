@@ -3,3 +3,12 @@ ion-card-header.ios {
     display: flex;
     flex-flow: column-reverse;
   }
+
+ion-card-subtitle {
+  margin: 2px;
+}
+
+ion-card{
+  display: block;
+  width: fit-content;
+}

@@ -1,0 +1,58 @@
+<ion-button id="open-modal" expand="block">
+  <ion-icon name="person-add-sharp"></ion-icon>Agregar usuario
+</ion-button>
+<ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title>Administrador de usuarios</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="addUser()" [strong]="true">Confirmar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-label position="stacked">Ingresa tu nombre</ion-label>
+        <ion-input type="text" placeholder="Nombre" [(ngModel)]="nombre" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Ingresa tu apellido</ion-label>
+        <ion-input type="text" placeholder="Apellido" [(ngModel)]="apellido" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Ingresa tu contrasena</ion-label>
+        <ion-input type="password" placeholder="Contrasena" [(ngModel)]="pass" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Ingresa tu email</ion-label>
+        <ion-input type="text" placeholder="test@test.com" [(ngModel)]="email" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Habilitado</ion-label>
+        <ion-toggle [(ngModel)]="enabled" slot="end" [checked]="true"></ion-toggle>
+      </ion-item>
+      <ion-list>
+        <ion-radio-group [(ngModel)]="roles">
+          <ion-item>
+            <ion-label>Administrador</ion-label>
+            <ion-radio slot="end" value="admin"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Funcionario</ion-label>
+            <ion-radio slot="end" value="funcionario"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Disenador</ion-label>
+            <ion-radio slot="end" value="disenador"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

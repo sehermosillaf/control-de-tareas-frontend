@@ -25,19 +25,19 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  // async showLoading() {
-  //   const loading = await this.loadingCtrl.create({
-  //     message: 'Iniciando sesion...',
-  //     duration: 1000,
-  //   });
-  //   loading.present();
-  // }
+  async showLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Iniciando sesion...',
+      duration: 1000,
+    });
+    loading.present();
+  }
+
 
   onSubmit() {
     this.auth.login(this.email, this.password).subscribe((resp) => {
       this.user = resp;
       localStorage.setItem('userID',this.user.id);
-      console.log(this.user.roles[0]?.nombre);
       // this.showLoading();
       if(this.user.roles[0]?.id === 1) {
         this.router.navigate(['/adminpanel']);
@@ -65,13 +65,13 @@ export class LoginPage implements OnInit {
     }
     );
   }
-    // validarEmail(email) {
-  //   const regex = new RegExp('^(.+)@(.+)$', 'i');
-  //   const result = regex.test(email);
-  //   if (!result) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // }
+    validarEmail(email) {
+    const regex = new RegExp('^(.+)@(.+)$', 'i');
+    const result = regex.test(email);
+    if (!result) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

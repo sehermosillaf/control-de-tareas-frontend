@@ -22,7 +22,7 @@ export class UsersService {
   getFunc(): Observable<UsuarioI> {
     return this.http.get<UsuarioI>(this.url + '/func');
   }
-  addUser(newUser: UsuarioI): Observable<object> {
+  addUser(newUser){
     return this.http.post(this.url, newUser);
   }
   deleteUser(id) {
