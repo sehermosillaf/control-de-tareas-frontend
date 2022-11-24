@@ -21,8 +21,6 @@ export class AdminpanelPage implements OnInit {
   tasks: any;
   isModalOpen = false;
 
-
-
   constructor(
     private userService: UsersService,
     private taskService: TasksService,
@@ -34,11 +32,12 @@ export class AdminpanelPage implements OnInit {
       this.loggedUser = resp;
     });
     this.userService.getAllUsers().subscribe((resp) => {
-      console.log(resp);
       this.userList = resp;
+      console.log(this.userList);
     });
     this.userService.getFunc().subscribe((resp) => {
       this.funcUserList = resp;
+      console.log(this.funcUserList);
     });
     this.taskService.getAllTasks().subscribe((resp) => {
       this.tasks = resp;

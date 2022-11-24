@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <form #form="ngForm" (ngSubmit)="onSubmit()" (keydown.enter)="onSubmit()"align="center">
+  <form #form="ngForm" (ngSubmit)="onSubmit()" (keydown.enter)="onSubmit()" align="center">
     <ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-col size="12" size-md="10" size-lg="5" size-xs="11">
@@ -14,17 +14,17 @@
           </div>
           <div padding>
             <ion-item>
-              <ion-icon name="mail-outline"></ion-icon>
+              <ion-icon name="mail-outline" class="ion-padding"></ion-icon>
               <ion-input name="email" type="email" placeholder="correo" [(ngModel)]="email" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-icon name="lock-closed-outline"></ion-icon>
+              <ion-icon name="lock-closed-outline" class="ion-padding"></ion-icon>
               <ion-input name="password" type="password" placeholder="contraseña" [(ngModel)]="password" required>
               </ion-input>
             </ion-item>
           </div>
           <div padding>
-            <ion-button  type="submit" [disabled]="form.invalid" expand="fill">Ingresar<ion-icon
+            <ion-button type="submit" [disabled]="form.invalid" expand="fill">Ingresar<ion-icon
                 name="caret-forward-outline"></ion-icon>
             </ion-button>
           </div>

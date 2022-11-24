@@ -10,11 +10,11 @@ export class UsersService {
   url = 'http://localhost:8080/api/users/';
   constructor(private http: HttpClient) {}
 
-  getUserByID(id): Observable<UsuarioI[]> {
-    return this.http.get<UsuarioI[]>(this.url + id);
+  getUserByID(id) {
+    return this.http.get(this.url + id);
   }
-  getAllUsers(): Observable<UsuarioI>{
-    return this.http.get<UsuarioI>(this.url);
+  getAllUsers(){
+    return this.http.get(this.url);
   }
   getAdmins(): Observable<UsuarioI> {
     return this.http.get<UsuarioI>(this.url + '/admins');

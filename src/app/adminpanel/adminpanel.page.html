@@ -7,7 +7,7 @@
       <ion-title>Bienvenido {{loggedUser.nombre}}!</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content [fullscreen]="true" class="ion-padding ion-margin">
+  <ion-content [fullscreen]="true">
     <ion-segment class="ion-padding-top">Panel de administrador</ion-segment>
     <ion-grid>
       <ion-row>
@@ -33,7 +33,7 @@
               color="danger"
               (click)="deleteUser(users.id)"
             >
-              <ion-icon name="person-remove-sharp"></ion-icon>
+              <ion-icon name="person-remove-sharp" class="ion-padding"></ion-icon>
             </ion-button>
             <ion-button
               class="ion-margin"
@@ -83,9 +83,6 @@
                 <ion-card-subtitle>{{units.descripcion}}</ion-card-subtitle>
                 <ion-card-subtitle
                   >Funcion: {{units.funcion}}</ion-card-subtitle
-                >
-                <ion-card-subtitle
-                  >Empresa: {{units.empresa.nombre}}</ion-card-subtitle
                 >
               </ion-card-header>
             </ng-container>

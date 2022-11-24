@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   async showLoading() {
     const loading = await this.loadingCtrl.create({
