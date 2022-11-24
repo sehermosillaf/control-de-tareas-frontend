@@ -2,21 +2,18 @@
   <ion-toolbar>
     <ion-title>¡Bienvenido, {{user.nombre}}! </ion-title>
   </ion-toolbar>
-  <app-modal-tarea></app-modal-tarea>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <ion-col size="4">
-      <ion-card *ngFor="let tasks of tasksUser" class="ion-margin">
-        <ion-card-header>
-          
+  <app-modal-tarea></app-modal-tarea>
+      <div *ngFor="let tasks of tasksUser">
+      <ion-card>
+        <ion-card-header >
           <ion-card-title>{{tasks.nombre}}</ion-card-title>
           <ion-card-subtitle>Descripción: {{tasks.descripcion}}</ion-card-subtitle>
           <ion-card-subtitle>Fecha creación: {{tasks.fechaCreacion}}</ion-card-subtitle>
           <ion-card-subtitle>Fecha inicio:{{tasks.fechaInicio}}</ion-card-subtitle>
           <ion-card-subtitle>Fecha termino: {{tasks.fechaTermino}}</ion-card-subtitle>
-          <ion-card-subtitle>Estado: {{tasks.estado.id}}</ion-card-subtitle>
-          <ion-card-subtitle>Porcentaje: {{tasks.estado.porcentaje * 100}}%</ion-card-subtitle>
         </ion-card-header>
         <ion-button id="open-modal" expand="fill" color="danger" class="ion-margin">Rechazar</ion-button>
         <ion-button id="open-modal" expand="fill" color="primary" class="ion-margin">Ver detalles</ion-button>
@@ -42,8 +39,8 @@
           </ng-template>
         </ion-modal>
       </ion-card>
-    </ion-col>
-    <ion-col size="5">
+    </div>
+    <!-- <ion-col size="5">
       <ion-card *ngFor="let tasks of tasksUser" class="subcard">
         <ion-card class="ion-margin">
           <ion-card-header *ngFor="let subtasks of tasks.subtareas">
@@ -55,5 +52,5 @@
           </ion-card-header>
         </ion-card>
       </ion-card>
-    </ion-col>
+    </ion-col> -->
 </ion-content>

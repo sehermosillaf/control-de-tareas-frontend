@@ -21,4 +21,7 @@ export class TasksService {
   addTask(newTask){
     return this.http.post(this.url,newTask);
   }
+  addTaskWithResponsible(newTask) {
+    return this.http.post(this.url + 'add',newTask);
+  }
 }

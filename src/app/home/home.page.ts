@@ -25,9 +25,6 @@ export class HomePage implements OnInit {
     this.userService.getUserByID(this.lsUserID).subscribe((resp) => {
       this.user = resp;
     });
-    this.userService.getAllUsers().subscribe((resp) => {
-      this.userList = resp;
-    });
     this.taskService.getTasksByUser(this.lsUserID).subscribe((resp) => {
       this.tasksUser = resp;
     });

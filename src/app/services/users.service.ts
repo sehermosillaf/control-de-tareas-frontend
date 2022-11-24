@@ -16,11 +16,14 @@ export class UsersService {
   getAllUsers(){
     return this.http.get(this.url);
   }
+  getEmailByUserID(id) {
+    return this.http.get(this.url + `mail/${id}`);
+  }
   getAdmins(): Observable<UsuarioI> {
     return this.http.get<UsuarioI>(this.url + '/admins');
   }
   getFunc(): Observable<UsuarioI> {
-    return this.http.get<UsuarioI>(this.url + '/func');
+    return this.http.get<UsuarioI>(this.url + 'func');
   }
   addUser(newUser){
     return this.http.post(this.url, newUser);
