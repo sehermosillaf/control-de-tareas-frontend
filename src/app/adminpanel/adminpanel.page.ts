@@ -13,8 +13,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AdminpanelPage implements OnInit {
   @ViewChild(IonModal) modal: IonModal;
   loggedUser: any;
-  lsUserID = localStorage.getItem('userID');
+  // lsUserID = localStorage.getItem('userID');
   userID = localStorage.getItem('userID');
+  userUnitID = localStorage.getItem('userUnit');
   funcUserList: any;
   userList: any;
   unitList: any;
@@ -22,6 +23,7 @@ export class AdminpanelPage implements OnInit {
   tasks: any;
   isModalOpen = false;
   companyID = localStorage.getItem;
+  declinedTaskCount: any;
   constructor(
     private userService: UsersService,
     private taskService: TasksService,
@@ -51,6 +53,9 @@ export class AdminpanelPage implements OnInit {
     });
     this.unitService.getUnitByCompany(this.companyID).subscribe((resp) => {
       this.unitList = resp;
+    });
+    this.taskService.declinedTaskCount(this.userUnitID).subscribe((resp) => {
+      this.declinedTaskCount = resp;
     });
   }
   tasksByUser(id) {

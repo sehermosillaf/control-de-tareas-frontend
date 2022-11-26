@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { TasksService } from '../services/tasks.service';
 import { IonModal } from '@ionic/angular';
+import { SubtasksService } from '../services/subtasks.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -13,18 +14,22 @@ import { IonModal } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
   user: any;
-  taskAutor: any;
+  taskAutor: number;
   userList: any;
   tasksUser: any;
   currentUserSource: any;
   lsUserID = localStorage.getItem('userID');
-  justificacion: any;
+  justificacion: string;
   name: string;
-
+  isModalOpen = false;
+  isModalDetailsOpen = false;
+  clickedTaskID: any;
+  taskID: number;
   constructor(
     private userService: UsersService,
     private modal: ModalController,
-    private taskService: TasksService
+    private taskService: TasksService,
+    private subtaskService: SubtasksService
   ) {}
 
   ngOnInit() {
@@ -33,34 +38,33 @@ export class HomePage implements OnInit {
     });
     this.taskService.getTasksByUser(this.lsUserID).subscribe((resp) => {
       this.tasksUser = resp;
-      console.log(this.tasksUser);
     });
-    this.userService
-      .getUserByID(this.tasksUser.usuarioCreador)
-      .subscribe((resp) => {
-        this.taskAutor = resp;
-        console.log(this.taskAutor);
-      });
+    this.taskService.updateTaskState();
   }
 
-  tareaClick(id) {
-    console.log(id);
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+  getTareaID(id) {
+    this.taskService.getTaskAutor(id).subscribe((resp) => {
+      this.taskAutor = Number(resp);
+      this.clickedTaskID = id;
+    });
   }
 
   cancel() {
     this.modal.dismiss(null, 'cancel');
   }
 
-  declineTask(id, usuarioCreador) {
+  declineTask(id) {
     this.modal.dismiss('confirm');
     const declinedTask = {
       idTarea: Number(id),
       justificacion: this.justificacion,
-      idResponsable: Number(usuarioCreador),
+      idResponsable: this.taskAutor,
     };
     this.taskService.declineTask(declinedTask).subscribe((resp) => {
       console.log(resp);
-      console.log(declinedTask);
     });
   }
 
@@ -69,6 +73,7 @@ export class HomePage implements OnInit {
     if (ev.detail.role === 'confirm') {
       this.justificacion = `Hello, ${ev.detail.data}!`;
     }
+    console.log('nasty');
   }
   //cerrar session - localstorage.
 }

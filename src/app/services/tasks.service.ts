@@ -25,4 +25,14 @@ export class TasksService {
   declineTask(task) {
     return this.http.post(this.url + 'rechazar', task);
   }
+
+  declinedTaskCount(id) {
+    return this.http.get(this.url + `unidad/rechazadas/${id}`);
+  }
+  updateTaskState() {
+    return this.http.get(this.url + 'estado');
+  }
+  getTaskAutor(idTarea) {
+    return this.http.get(this.url + `creador/${idTarea}`);
+  }
 }
