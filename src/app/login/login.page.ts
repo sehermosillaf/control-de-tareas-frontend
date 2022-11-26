@@ -33,14 +33,16 @@ export class LoginPage implements OnInit {
       duration: 1000,
     });
     loading.present();
-}
+  }
 
   onSubmit() {
     this.auth.login(this.email, this.password).subscribe(
       (resp) => {
         this.user = resp;
         localStorage.setItem('userID', this.user.id);
-        localStorage.setItem('userEmail',this.user.email);
+        localStorage.setItem('companyID', this.user.unidad.empresa.id);
+        localStorage.setItem('userEmail', this.user.email);
+        localStorage.setItem('userUnit', this.user.unidad.id);
         // this.showLoading();
         if (this.user.roles[0]?.id === 1) {
           // this.router.navigate(['/admin']);

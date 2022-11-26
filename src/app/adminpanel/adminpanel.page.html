@@ -11,34 +11,24 @@
     <ion-segment class="ion-padding-top">Panel de administrador</ion-segment>
     <ion-grid>
       <ion-row>
-        <ion-col size-sm="6" offset-xs>
+        <ion-col size-sm="5" offset-xs>
           <ion-card>
             <app-modal></app-modal>
           </ion-card>
           <ion-label class="ion-padding">Usuarios</ion-label>
-          <ion-card
-            *ngFor="let users of userList"
-            class="ion-justify-content-center"
-          >
+          <ion-card *ngFor="let users of userList" class="ion-justify-content-center">
             <ion-card-header>
-              <ion-card-title
-                >{{users.nombre + ' ' + users.apellido}}</ion-card-title
-              >
+              <ion-card-title>{{users.nombre + ' ' + users.apellido}}</ion-card-title>
               <ion-card-subtitle>{{users.roles[0]?.nombre}}</ion-card-subtitle>
               <ion-card-subtitle>{{users.email}}</ion-card-subtitle>
+              <ion-card-subtitle>Empresa: {{users.unidad.empresa.nombre}}</ion-card-subtitle>
+              <ion-card-subtitle>Unidad: {{users.unidad.nombre}}</ion-card-subtitle>
             </ion-card-header>
             <ion-card-content> </ion-card-content>
-            <ion-button
-              class="ion-margin"
-              color="danger"
-              (click)="deleteUser(users.id)"
-            >
+            <ion-button class="ion-margin" color="danger" (click)="deleteUser(users.id)">
               <ion-icon name="person-remove-sharp" class="ion-padding"></ion-icon>
             </ion-button>
-            <ion-button
-              class="ion-margin"
-              (click)="tasksByUser(users.id); setOpen(true)"
-              >Ver tareas asignadas
+            <ion-button class="ion-margin" (click)="tasksByUser(users.id); setOpen(true)">Ver tareas asignadas
             </ion-button>
             <ion-modal [isOpen]="isModalOpen">
               <ng-template>
@@ -50,23 +40,14 @@
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
-                <ion-content
-                  *ngFor="let tasks of userTasks"
-                  class="ion-padding"
-                >
+                <ion-content *ngFor="let tasks of userTasks" class="ion-padding">
                   <ion-card>
                     <ion-card-title>{{tasks.nombre}}</ion-card-title>
                     <ion-card-subtitle>{{tasks.descripcion}}</ion-card-subtitle>
-                    <ion-card-subtitle
-                      >Fecha creacion:
-                      {{tasks.fechaCreacion}}</ion-card-subtitle
-                    >
-                    <ion-card-subtitle
-                      >Fecha inicio: {{tasks.fechaInicio}}</ion-card-subtitle
-                    >
-                    <ion-card-subtitle
-                      >Fecha termino: {{tasks.fechaTermino}}</ion-card-subtitle
-                    >
+                    <ion-card-subtitle>Fecha creacion:
+                      {{tasks.fechaCreacion}}</ion-card-subtitle>
+                    <ion-card-subtitle>Fecha inicio: {{tasks.fechaInicio}}</ion-card-subtitle>
+                    <ion-card-subtitle>Fecha termino: {{tasks.fechaTermino}}</ion-card-subtitle>
                   </ion-card>
                 </ion-content>
               </ng-template>
@@ -81,9 +62,7 @@
               <ion-card-header>
                 <ion-card-title>{{units.nombre}}</ion-card-title>
                 <ion-card-subtitle>{{units.descripcion}}</ion-card-subtitle>
-                <ion-card-subtitle
-                  >Funcion: {{units.funcion}}</ion-card-subtitle
-                >
+                <ion-card-subtitle>Funcion: {{units.funcion}}</ion-card-subtitle>
               </ion-card-header>
             </ng-container>
           </ion-card>

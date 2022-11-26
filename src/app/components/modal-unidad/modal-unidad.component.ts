@@ -24,14 +24,14 @@ export class ModalUnidadComponent implements OnInit {
     const newUnit = {
       nombre: this.nombre,
       descripcion: this.descripcion,
-      funcion: this.funcion
+      funcion: this.funcion,
     };
     this.unitService.addUnit(newUnit).subscribe((resp) => {
       Swal.fire({
-        title:'Unidad creado!',
-        text:'Unidad creado correctamente!',
-        icon:'success',
-        heightAuto: false
+        title: 'Unidad creado!',
+        text: 'Unidad creado correctamente!',
+        icon: 'success',
+        heightAuto: false,
       });
       this.refresh();
       console.log(resp);

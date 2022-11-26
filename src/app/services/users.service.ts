@@ -13,25 +13,31 @@ export class UsersService {
   getUserByID(id) {
     return this.http.get(this.url + id);
   }
-  getAllUsers(){
+  getAllUsers() {
     return this.http.get(this.url);
+  }
+  getUsersByUnit(id) {
+    return this.http.get(this.url + `unit/${id}`);
   }
   getEmailByUserID(id) {
     return this.http.get(this.url + `mail/${id}`);
   }
   getAdmins(): Observable<UsuarioI> {
-    return this.http.get<UsuarioI>(this.url + '/admins');
+    return this.http.get<UsuarioI>(this.url + 'admins');
   }
   getFunc(): Observable<UsuarioI> {
     return this.http.get<UsuarioI>(this.url + 'func');
   }
-  addUser(newUser){
+  addUser(newUser) {
     return this.http.post(this.url, newUser);
+  }
+  addUsernRol(newUser) {
+    return this.http.post(this.url + 'register', newUser);
   }
   deleteUser(id) {
     return this.http.delete(this.url + id);
   }
-  editUser(id,user: UsuarioI){
-    return this.http.put(this.url + id,user);
+  editUser(id, user: UsuarioI) {
+    return this.http.put(this.url + id, user);
   }
 }

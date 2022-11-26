@@ -13,13 +13,19 @@ import { IonModal } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
   user: any;
+  taskAutor: any;
   userList: any;
   tasksUser: any;
   currentUserSource: any;
   lsUserID = localStorage.getItem('userID');
-  comentario: string;
+  justificacion: any;
   name: string;
-  constructor(private userService: UsersService, private modal: ModalController, private taskService: TasksService) {}
+
+  constructor(
+    private userService: UsersService,
+    private modal: ModalController,
+    private taskService: TasksService
+  ) {}
 
   ngOnInit() {
     this.userService.getUserByID(this.lsUserID).subscribe((resp) => {
@@ -27,68 +33,42 @@ export class HomePage implements OnInit {
     });
     this.taskService.getTasksByUser(this.lsUserID).subscribe((resp) => {
       this.tasksUser = resp;
+      console.log(this.tasksUser);
     });
-  }
-  // cardClick(){
-  //   Swal.fire({
-  //     icon: 'info',
-  //     title: 'a...',
-  //     text: 'aaa',
-  //     heightAuto: false
-  //   });
-  // }
-  // deleteUser(id) {
-  //   Swal.fire({
-  //     title: 'Estas seguro de eliminar este usuario?',
-  //     text: 'No podras de revertir este cambio!',
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'Si, eliminar usuario!',
-  //     heightAuto: false
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       Swal.fire({
-  //         title:'Eliminado!',
-  //         text: 'Este usuario a sido eliminado.',
-  //         icon:'success',
-  //         heightAuto: false
-  //       });
-  //     }
-  //   });
-  // }
-  declineTask(){
-
+    this.userService
+      .getUserByID(this.tasksUser.usuarioCreador)
+      .subscribe((resp) => {
+        this.taskAutor = resp;
+        console.log(this.taskAutor);
+      });
   }
 
-  tareasClick(){
-    Swal.fire({
-      title: 'Estas seguro de eliminar este usuario?',
-      text: 'No podras de revertir este cambio!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, eliminar usuario!',
-      heightAuto: false
-    });
+  tareaClick(id) {
+    console.log(id);
   }
 
   cancel() {
     this.modal.dismiss(null, 'cancel');
   }
 
-  confirm() {
-    this.modal.dismiss(this.name, 'confirm');
+  declineTask(id, usuarioCreador) {
+    this.modal.dismiss('confirm');
+    const declinedTask = {
+      idTarea: Number(id),
+      justificacion: this.justificacion,
+      idResponsable: Number(usuarioCreador),
+    };
+    this.taskService.declineTask(declinedTask).subscribe((resp) => {
+      console.log(resp);
+      console.log(declinedTask);
+    });
   }
 
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      this.comentario = `Hello, ${ev.detail.data}!`;
+      this.justificacion = `Hello, ${ev.detail.data}!`;
     }
   }
   //cerrar session - localstorage.
-  }
-
+}

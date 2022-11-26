@@ -4,6 +4,7 @@ import { TasksService } from '../services/tasks.service';
 import { UsersService } from '../services/users.service';
 import { IonModal } from '@ionic/angular';
 import { UnitService } from '../services/unit.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-adminpanel',
   templateUrl: './adminpanel.page.html',
@@ -20,29 +21,35 @@ export class AdminpanelPage implements OnInit {
   userTasks: any;
   tasks: any;
   isModalOpen = false;
-
+  companyID = localStorage.getItem;
   constructor(
     private userService: UsersService,
     private taskService: TasksService,
-    private unitService: UnitService
-  ) { }
+    private unitService: UnitService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   ngOnInit() {
     this.userService.getUserByID(this.userID).subscribe((resp) => {
       this.loggedUser = resp;
     });
-    this.userService.getAllUsers().subscribe((resp) => {
+    // this.userService.getAllUsers().subscribe((resp) => {
+    //   this.userList = resp;
+    // });
+    this.userService.getUsersByUnit(this.userID).subscribe((resp) => {
       this.userList = resp;
-      console.log(this.userList);
+      console.log(resp);
     });
     this.userService.getFunc().subscribe((resp) => {
       this.funcUserList = resp;
-      console.log(this.funcUserList);
     });
     this.taskService.getAllTasks().subscribe((resp) => {
       this.tasks = resp;
     });
-    this.unitService.getAllUnits().subscribe((resp) => {
+    this.unitService.getUnitByCompany(this.companyID).subscribe((resp) => {
       this.unitList = resp;
     });
   }
@@ -71,7 +78,6 @@ export class AdminpanelPage implements OnInit {
       if (result.isConfirmed) {
         this.userService.deleteUser(id).subscribe((resp) => {
           console.log(resp);
-          this.refresh();
         });
         Swal.fire({
           title: 'Eliminado!',
@@ -81,8 +87,14 @@ export class AdminpanelPage implements OnInit {
         });
       }
     });
+    Swal.fire({
+      icon: 'error',
+      title: 'No se ha eliminado el usuario',
+      text: 'Este usuario posee tareas asignadas',
+      heightAuto: false,
+    });
   }
-  refresh(): void {
-    window.location.reload();
-  }
+  // refresh(): void {
+  //   window.location.reload();
+  // }
 }

@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     // Ruta por defecto redirecciona a login
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -20,9 +20,11 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./adminpanel/adminpanel.module').then( m => m.AdminpanelPageModule)
+    loadChildren: () =>
+      import('./adminpanel/adminpanel.module').then(
+        (m) => m.AdminpanelPageModule
+      ),
   },
-
 ];
 
 @NgModule({

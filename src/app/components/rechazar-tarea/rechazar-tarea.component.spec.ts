@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { HomePage } from './home.page';
+import { RechazarTareaComponent } from './rechazar-tarea.component';
 
-describe('HomePage', () => {
-  let component: HomePage;
-  let fixture: ComponentFixture<HomePage>;
+describe('RechazarTareaComponent', () => {
+  let component: RechazarTareaComponent;
+  let fixture: ComponentFixture<RechazarTareaComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [HomePage],
-      imports: [IonicModule.forRoot()],
+      declarations: [ RechazarTareaComponent ],
+      imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HomePage);
+    fixture = TestBed.createComponent(RechazarTareaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -30,8 +30,14 @@ export class ModalTareaComponent implements OnInit {
   funcList: any;
   currentSelectedUser = undefined;
   email: any;
+  loggedUser = localStorage.getItem('userID');
+  loggedUserUnit = localStorage.getItem('userUnit');
 
-  constructor(private taskService: TasksService, private userService: UsersService, private mailSender: MailSenderService) { }
+  constructor(
+    private taskService: TasksService,
+    private userService: UsersService,
+    private mailSender: MailSenderService
+  ) {}
 
   ngOnInit() {
     this.userService.getFunc().subscribe((resp) => {
@@ -53,22 +59,24 @@ export class ModalTareaComponent implements OnInit {
      */
     return utcDay !== 0 && utcDay !== 6;
   };
-  addTarea(){
-  const newTask = {
-    nombre: this.nombre,
-    descripcion: this.descripcion,
-    fechaCreacion:this.minDate,
-    fechaInicio: this.fechaInicio,
-    fechaTermino: this.fechaTermino,
-    usuarioResponsable:this.currentSelectedUser.usuario_ID
-  };
-  console.log(newTask);
+  addTarea() {
+    const newTask = {
+      nombre: this.nombre,
+      descripcion: this.descripcion,
+      fechaCreacion: this.minDate,
+      fechaInicio: this.fechaInicio,
+      fechaTermino: this.fechaTermino,
+      usuarioResponsable: this.currentSelectedUser.usuario_ID,
+      usuarioCreador: Number(this.loggedUser),
+      unidadID: Number(this.loggedUserUnit),
+    };
+    console.log(newTask);
     this.taskService.addTaskWithResponsible(newTask).subscribe((resp) => {
       Swal.fire({
-        title:'Tarea creada!',
-        text:'Se le envio un correo al usuario responsable!',
-        icon:'success',
-        heightAuto: false
+        title: 'Tarea creada!',
+        text: 'Se le envio un correo al usuario responsable!',
+        icon: 'success',
+        heightAuto: false,
       });
     });
   }

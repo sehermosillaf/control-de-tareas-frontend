@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class MailSenderService {
   private url = 'http://localhost:8080/api/mail/';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   sendMailAssignedTask(correo: string) {
-    return this.http.post(this.url,correo);
+    return this.http.post(this.url, correo);
   }
 }
