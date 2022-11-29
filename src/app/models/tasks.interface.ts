@@ -5,6 +5,11 @@ export interface TareaI {
   fechaCreacion: string;
   fechaInicio: string;
   fechaTermino: number;
+<<<<<<< Updated upstream
   estado: [];
   subtareas: [];
+=======
+  estado: string[];
+  subtareas: string[];
+>>>>>>> Stashed changes
 }

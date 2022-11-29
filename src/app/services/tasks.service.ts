@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { TareaI } from '../models/tasks.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +11,7 @@ export class TasksService {
     return this.http.get(this.url);
   }
   getTasksByUser(id) {
-    return this.http.get<Response>(this.url + `user/${id}`, {
-      responseType: 'json',
-    });
+    return this.http.get(this.url + `user/${id}`);
   }
 
   addTask(newTask) {

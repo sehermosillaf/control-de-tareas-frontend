@@ -29,21 +29,9 @@ ion-card-header.ios {
   display: flex;
   flex-flow: column-reverse;
 }
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Create 2 columns and auto-place rows */
-}
 
 
-/*Escritorio*/
-@media (min-width: 540px) and (max-width: 2000px) {
-  ion-card{
-  margin-left: 20px;
-  display: inline-block;
-  justify-content: space-evenly;
-  width: fit-content;
-  }
-}
+
 
 
 

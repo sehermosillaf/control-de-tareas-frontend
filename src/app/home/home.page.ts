@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import Swal from 'sweetalert2';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { TasksService } from '../services/tasks.service';
-import { SubtasksService } from '../services/subtasks.service';
-
+import { IonModal } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -14,22 +14,16 @@ import { SubtasksService } from '../services/subtasks.service';
 export class HomePage implements OnInit {
   user: any;
   taskAutor: number;
+  clickedTaskID: any;
   userList: any;
   tasksUser: any;
   currentUserSource: any;
   lsUserID = localStorage.getItem('userID');
   justificacion: string;
-  name: string;
   isModalOpen = false;
-  isModalDetailsOpen = false;
-  clickedTaskID: any;
-  taskID: number;
-  subtask: any;
   constructor(
     private userService: UsersService,
-    private modal: ModalController,
-    private taskService: TasksService,
-    private subtaskService: SubtasksService
+    private taskService: TasksService
   ) {}
 
   ngOnInit() {
@@ -38,47 +32,41 @@ export class HomePage implements OnInit {
     });
     this.taskService.getTasksByUser(this.lsUserID).subscribe((resp) => {
       this.tasksUser = resp;
+      console.log(this.tasksUser);
     });
   }
-
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
 
-  getSubtareas(subtareas) {
-    this.subtask = subtareas;
-    console.log(subtareas);
+  tareaClick(id) {
+    console.log(id);
   }
 
   getTareaID(id) {
     this.taskService.getTaskAutor(id).subscribe((resp) => {
       this.taskAutor = Number(resp);
-      this.clickedTaskID = id;
-    });
-  }
-
-  cancel() {
-    this.modal.dismiss(null, 'cancel');
-  }
-
-  declineTask(id) {
-    this.modal.dismiss('confirm');
-    const declinedTask = {
-      idTarea: Number(id),
-      justificacion: this.justificacion,
-      idResponsable: this.taskAutor,
-    };
-    this.taskService.declineTask(declinedTask).subscribe((resp) => {
+      this.clickedTaskID = Number(id);
       console.log(resp);
     });
   }
 
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    if (ev.detail.role === 'confirm') {
-      this.justificacion = `Hello, ${ev.detail.data}!`;
-    }
-    console.log('nasty');
+  declineTask() {
+    const declinedTask = {
+      idTarea: Number(this.clickedTaskID),
+      justificacion: this.justificacion,
+      idResponsable: Number(this.taskAutor),
+    };
+    console.log(this.declineTask);
+    this.taskService.declineTask(declinedTask).subscribe((resp) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Tarea rechazada',
+        text: 'Se le ha enviado una notificacion al usuario creador',
+        heightAuto: false,
+      });
+    });
   }
+
   //cerrar session - localstorage.
 }
