@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import Swal from 'sweetalert2';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { TasksService } from '../services/tasks.service';
-import { IonModal } from '@ionic/angular';
 import { SubtasksService } from '../services/subtasks.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -25,6 +24,7 @@ export class HomePage implements OnInit {
   isModalDetailsOpen = false;
   clickedTaskID: any;
   taskID: number;
+  subtask: any;
   constructor(
     private userService: UsersService,
     private modal: ModalController,
@@ -39,12 +39,17 @@ export class HomePage implements OnInit {
     this.taskService.getTasksByUser(this.lsUserID).subscribe((resp) => {
       this.tasksUser = resp;
     });
-    this.taskService.updateTaskState();
   }
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
+
+  getSubtareas(subtareas) {
+    this.subtask = subtareas;
+    console.log(subtareas);
+  }
+
   getTareaID(id) {
     this.taskService.getTaskAutor(id).subscribe((resp) => {
       this.taskAutor = Number(resp);

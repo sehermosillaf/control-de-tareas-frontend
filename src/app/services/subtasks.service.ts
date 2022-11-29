@@ -10,7 +10,7 @@ export class SubtasksService {
 
   constructor(private http: HttpClient) {}
 
-  getSubtaskByTaskID(id) {
+  getSubtaskByTaskID(id: any): any {
     this.http.get(this.url + `tarea/${id}`);
   }
 }
