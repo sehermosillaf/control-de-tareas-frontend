@@ -39,6 +39,7 @@
               <h3>Fecha de inicio: {{tasks.fechaInicio}}</h3>
               <h3>Fecha de termino: {{tasks.fechaTermino}}</h3>
               <h3 *ngIf="tasks.estado.nombre?.length > 1">Estado: {{tasks.estado.nombre}}</h3>
+              <div id="circle"></div>
               <h3 *ngIf="tasks.justificacion?.length > 1"> Justificacion: {{tasks.justificacion}}</h3>
             </ion-card-content>
             <ion-card-content>

@@ -40,14 +40,21 @@ ion-card {
   -webkit-box-shadow: -1px 10px 5px 0px rgba(0,0,0,0.75);
   box-shadow: -1px 10px 5px 0px rgba(0,0,0,0.75);
   margin-left: 50px;
+  width: fit-content;
 }
 
 ion-button{
   margin:20px;
 }
 
-ion-card {
-  width: fit-content;
+
+#circle{
+  width: 25px;
+    height: 25px;
+    background: green;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
 }
 
 
