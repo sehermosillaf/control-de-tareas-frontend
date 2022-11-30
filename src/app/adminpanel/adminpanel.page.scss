@@ -8,7 +8,19 @@ ion-card-subtitle {
   margin: 2px;
 }
 
-ion-card{
-  display: block;
+ion-card {
   width: fit-content;
+}
+
+ion-button {
+  width: fit-content;
+}
+
+.grid-tareas{
+  width: fit-content;
+}
+ion-card {
+  border-radius: 10px;
+  -webkit-box-shadow: -1px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: -1px 10px 5px 0px rgba(0,0,0,0.75);
 }

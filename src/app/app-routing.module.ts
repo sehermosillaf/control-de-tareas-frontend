@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     // Ruta por defecto redirecciona a login
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {

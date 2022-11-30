@@ -35,8 +35,7 @@ export class ModalTareaComponent implements OnInit {
 
   constructor(
     private taskService: TasksService,
-    private userService: UsersService,
-    private mailSender: MailSenderService
+    private userService: UsersService
   ) {}
 
   ngOnInit() {

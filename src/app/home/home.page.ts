@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
 import Swal from 'sweetalert2';
-import { OverlayEventDetail } from '@ionic/core/components';
 import { TasksService } from '../services/tasks.service';
-import { IonModal } from '@ionic/angular';
+import * as moment from 'moment';
+import { SubtasksService } from '../services/subtasks.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -17,13 +16,21 @@ export class HomePage implements OnInit {
   clickedTaskID: any;
   userList: any;
   tasksUser: any;
+  subtask: any;
   currentUserSource: any;
   lsUserID = localStorage.getItem('userID');
   justificacion: string;
   isModalOpen = false;
+  isModalDetailsOpen = false;
+  nombre: any;
+  descripcion: any;
+  fechaCreacion = moment().format();
+  fechaInicio: any;
+  fechaTermino: any;
   constructor(
     private userService: UsersService,
-    private taskService: TasksService
+    private taskService: TasksService,
+    private subtaskService: SubtasksService
   ) {}
 
   ngOnInit() {
@@ -38,6 +45,9 @@ export class HomePage implements OnInit {
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
+  openDetails(isOpen: boolean) {
+    this.isModalDetailsOpen = isOpen;
+  }
 
   tareaClick(id) {
     console.log(id);
@@ -49,8 +59,10 @@ export class HomePage implements OnInit {
       this.clickedTaskID = Number(id);
       console.log(resp);
     });
+    this.subtaskService.getSubtaskByTaskID(id).subscribe((resp) => {
+      this.subtask = resp;
+    });
   }
-
   declineTask() {
     const declinedTask = {
       idTarea: Number(this.clickedTaskID),
@@ -66,6 +78,49 @@ export class HomePage implements OnInit {
         heightAuto: false,
       });
     });
+  }
+  terminar() {
+    Swal.fire({
+      icon: 'success',
+      title: 'Tarea terminada',
+      text: 'Se ha terminado la tarea con exito',
+      heightAuto: false,
+    });
+  }
+
+  addSubtask() {
+    const subtask = {
+      nombre: this.nombre,
+      descripcion: this.descripcion,
+      fechaCreacion: this.fechaCreacion,
+      fechaInicio: this.fechaInicio,
+      fechaTermino: this.fechaTermino,
+      idTarea: this.clickedTaskID,
+    };
+    this.subtaskService.insertSubtask(subtask).subscribe((resp) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Subtarea agregada',
+        text: 'Se ha agregado una subtarea ha esta tarea',
+        heightAuto: false,
+      });
+      console.log(resp);
+      console.log(subtask);
+    });
+  }
+
+  isWeekday = (dateString: string) => {
+    const date = new Date(dateString);
+    const utcDay = date.getUTCDay();
+    /**
+     * Date will be enabled if it is not
+     * Sunday or Saturday
+     */
+    return utcDay !== 0 && utcDay !== 6;
+  };
+
+  compareWith(o1, o2) {
+    return o1 && o2 ? o1.id === o2.id : o1 === o2;
   }
 
   //cerrar session - localstorage.

@@ -22,6 +22,7 @@ export class AdminpanelPage implements OnInit {
   userTasks: any;
   tasks: any;
   isModalOpen = false;
+
   companyID = localStorage.getItem;
   declinedTaskCount: any;
   constructor(
@@ -35,8 +36,12 @@ export class AdminpanelPage implements OnInit {
   }
 
   ngOnInit() {
+    this.taskService.declinedTaskCount(this.userUnitID).subscribe((resp) => {
+      this.declinedTaskCount = resp;
+    });
     this.userService.getUserByID(this.userID).subscribe((resp) => {
       this.loggedUser = resp;
+      console.log(resp);
     });
     // this.userService.getAllUsers().subscribe((resp) => {
     //   this.userList = resp;
@@ -53,9 +58,6 @@ export class AdminpanelPage implements OnInit {
     });
     this.unitService.getUnitByCompany(this.companyID).subscribe((resp) => {
       this.unitList = resp;
-    });
-    this.taskService.declinedTaskCount(this.userUnitID).subscribe((resp) => {
-      this.declinedTaskCount = resp;
     });
   }
   tasksByUser(id) {

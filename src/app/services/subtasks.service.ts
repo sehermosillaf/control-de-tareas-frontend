@@ -13,4 +13,8 @@ export class SubtasksService {
   getSubtaskByTaskID(id: any): any {
     this.http.get(this.url + `tarea/${id}`);
   }
+
+  insertSubtask(subtask) {
+    return this.http.post(this.url + 'insert', subtask);
+  }
 }
