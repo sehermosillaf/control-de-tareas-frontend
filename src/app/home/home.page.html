@@ -2,9 +2,10 @@
   <ion-toolbar>
     <ion-title>¡Bienvenido, {{user.nombre}}! </ion-title>
     <ion-buttons slot="end">
-      <ion-menu-button auto-hide="false"></ion-menu-button>
+      <ion-button (click)="logout()" color="danger" fill="solid">Cerrar session</ion-button>
     </ion-buttons>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -18,10 +19,14 @@
       <h3>{{user.unidad.empresa.nombre}}</h3>
       <h3>{{user.unidad.nombre}}</h3>
     </ion-card-content>
+    <ion-button size="small">
+      <ion-icon name="pencil-sharp"></ion-icon>
+    </ion-button>
+    <div class="ion-margin">
+      <app-modal-tarea></app-modal-tarea>
+    </div>
   </ion-card>
-  <div class="ion-margin">
-    <app-modal-tarea></app-modal-tarea>
-  </div>
+
   <ng-container>
     <ion-grid>
       <ion-row>
@@ -50,8 +55,12 @@
               </ng-container>
             </ion-card-content>
             <ion-button expand="fill" (click)="setOpen(true)" color="danger" size="small">Rechazar</ion-button>
-            <ion-button expand="fill" (click)="openDetails(true)" color="primary" size="small">Subtareas</ion-button>
+            <ion-button expand="fill" (click)="openDetails(true)" color="primary" size="small">Subtareas
+            </ion-button>
             <ion-button expand="fill" (click)="terminar()" color="success" size="small">Terminar</ion-button>
+            <ion-button size="small">
+              <ion-icon name="pencil-sharp"></ion-icon>
+            </ion-button>
           </ion-card>
         </ion-col>
       </ion-row>
@@ -105,14 +114,14 @@
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Fecha de inicio</ion-label>
-          <ion-datetime [(ngModel)]="fechaInicio" [isDateEnabled]="isWeekday"
-            value="{{ fechaCreacion | date: 'yyyy-MM-dd' }}" min="{{ fechaCreacion | date: 'yyyy-MM-dd' }}">
+          <ion-datetime [(ngModel)]="fechaInicio" [isDateEnabled]="isWeekday" value="{{ minDate | date: 'yyyy-MM-dd' }}"
+            min="{{ minDate | date: 'yyyy-MM-dd' }}">
           </ion-datetime>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Fecha de termino</ion-label>
           <ion-datetime [(ngModel)]="fechaTermino" [isDateEnabled]="isWeekday"
-            value="{{ fechaCreacion | date: 'yyyy-MM-dd' }}" min="{{ fechaCreacion | date: 'yyyy-MM-dd' }}">
+            value="{{ minDate | date: 'yyyy-MM-dd' }}" min="{{ minDate | date: 'yyyy-MM-dd' }}">
           </ion-datetime>
         </ion-item>
       </ion-content>

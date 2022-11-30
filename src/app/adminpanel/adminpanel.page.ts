@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AdminpanelPage implements OnInit {
   @ViewChild(IonModal) modal: IonModal;
   loggedUser: any;
-  // lsUserID = localStorage.getItem('userID');
+  lsUserID = localStorage.getItem('userID');
   userID = localStorage.getItem('userID');
   userUnitID = localStorage.getItem('userUnit');
   funcUserList: any;
@@ -46,7 +46,7 @@ export class AdminpanelPage implements OnInit {
     // this.userService.getAllUsers().subscribe((resp) => {
     //   this.userList = resp;
     // });
-    this.userService.getUsersByUnit(this.userID).subscribe((resp) => {
+    this.userService.getUsersByUnit(this.userUnitID).subscribe((resp) => {
       this.userList = resp;
       console.log(resp);
     });
@@ -83,9 +83,9 @@ export class AdminpanelPage implements OnInit {
       heightAuto: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.userService.deleteUser(id).subscribe((resp) => {
-          console.log(resp);
-        });
+        // this.userService.deleteUser(id).subscribe((resp) => {
+        //   console.log(resp);
+        // });
         Swal.fire({
           title: 'Eliminado!',
           text: 'Este usuario a sido eliminado.',
@@ -94,12 +94,11 @@ export class AdminpanelPage implements OnInit {
         });
       }
     });
-    Swal.fire({
-      icon: 'error',
-      title: 'No se ha eliminado el usuario',
-      text: 'Este usuario posee tareas asignadas',
-      heightAuto: false,
-    });
+  }
+  logout() {
+    localStorage.removeItem('userID');
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
   // refresh(): void {
   //   window.location.reload();

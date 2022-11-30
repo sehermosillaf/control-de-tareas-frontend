@@ -1,13 +1,23 @@
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
+      <ion-buttons slot="end">
+        <ion-button (click)="logout()" color="danger" fill="solid" class="ion-margin">Cerrar session</ion-button>
       </ion-buttons>
       <ion-title>Bienvenido {{loggedUser.nombre}}!</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content [fullscreen]="true">
+    <ion-card class="logged-user-card">
+      <ion-card-title>
+        {{loggedUser.nombre + ' ' + loggedUser.apellido}}
+      </ion-card-title>
+      <ion-card-content>
+        <h3>{{loggedUser.roles[0]?.nombre}}</h3>
+        <h3>{{loggedUser.unidad.empresa.nombre}}</h3>
+        <h3>{{loggedUser.unidad.nombre}}</h3>
+      </ion-card-content>
+    </ion-card>
     <ion-segment class="ion-margin">Panel de administrador</ion-segment>
 
     <ion-grid class="grid-tareas">
@@ -81,7 +91,6 @@
           </ion-card>
         </ion-col>
         <ion-col size="10" size-md="4" size-sm="3">
-
           <ion-card class="ion-margin ion-justify-content-center">
             <ng-container *ngFor="let units of unitList">
               <ion-card-header>

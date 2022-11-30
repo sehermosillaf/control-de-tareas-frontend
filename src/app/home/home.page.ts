@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { TasksService } from '../services/tasks.service';
 import * as moment from 'moment';
 import { SubtasksService } from '../services/subtasks.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -24,13 +25,14 @@ export class HomePage implements OnInit {
   isModalDetailsOpen = false;
   nombre: any;
   descripcion: any;
-  fechaCreacion = moment().format();
+  minDate = moment().format();
   fechaInicio: any;
   fechaTermino: any;
   constructor(
     private userService: UsersService,
     private taskService: TasksService,
-    private subtaskService: SubtasksService
+    private subtaskService: SubtasksService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -88,11 +90,17 @@ export class HomePage implements OnInit {
     });
   }
 
+  logout() {
+    localStorage.removeItem('userID');
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
+
   addSubtask() {
     const subtask = {
       nombre: this.nombre,
       descripcion: this.descripcion,
-      fechaCreacion: this.fechaCreacion,
+      fechaCreacion: this.minDate,
       fechaInicio: this.fechaInicio,
       fechaTermino: this.fechaTermino,
       idTarea: this.clickedTaskID,

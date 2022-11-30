@@ -71,6 +71,7 @@ export class ModalTareaComponent implements OnInit {
     };
     console.log(newTask);
     this.taskService.addTaskWithResponsible(newTask).subscribe((resp) => {
+      console.log(resp);
       Swal.fire({
         title: 'Tarea creada!',
         text: 'Se le envio un correo al usuario responsable!',
