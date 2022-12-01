@@ -48,13 +48,38 @@ ion-button{
 }
 
 
-#circle{
+#red-circle{
   width: 25px;
     height: 25px;
-    background: green;
+    background: rgb(255, 0, 13);
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     border-radius: 50px;
+}
+#yellow-circle{
+    width: 25px;
+    height: 25px;
+    background: rgb(250, 212, 0);
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+#green-circle{
+  width: 25px;
+  height: 25px;
+  background: rgb(3, 255, 16);
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+}
+
+#gray-circle{
+  width: 25px;
+  height: 25px;
+  background: rgb(99, 99, 99);
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
 }
 
 

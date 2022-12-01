@@ -21,10 +21,10 @@ ion-button {
 }
 ion-card {
   border-radius: 10px;
-  -webkit-box-shadow: -1px 10px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: -1px 10px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: -1px 10px 15px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 10px 15px 0px rgba(0, 0, 0, 0.75);
   margin: 0 auto;
-  width: auto;
+  width: fit-content;
 }
 .logged-user-card{
   width: fit-content;
