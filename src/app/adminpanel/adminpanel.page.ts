@@ -5,6 +5,7 @@ import { UsersService } from '../services/users.service';
 import { IonModal } from '@ionic/angular';
 import { UnitService } from '../services/unit.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PdfService } from '../services/pdf.service';
 @Component({
   selector: 'app-adminpanel',
   templateUrl: './adminpanel.page.html',
@@ -30,7 +31,8 @@ export class AdminpanelPage implements OnInit {
     private taskService: TasksService,
     private unitService: UnitService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private pdfService: PdfService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -99,6 +101,25 @@ export class AdminpanelPage implements OnInit {
     localStorage.removeItem('userID');
     localStorage.clear();
     this.router.navigate(['/login']);
+  }
+
+  generatePDF() {
+    this.pdfService.generatePDF().subscribe(
+      (data: Blob) => {
+        const file = new Blob([data], { type: 'aplication/pdf' });
+        const fileUrl = URL.createObjectURL(file);
+        const a = document.createElement('a');
+        a.href = fileUrl;
+        a.target = '_blank';
+        a.download = 'tareas.pdf';
+        document.body.appendChild(a);
+        a.click();
+      },
+      (error) => {
+        console.log('error', error);
+      }
+    );
+    console.log('pdf');
   }
   // refresh(): void {
   //   window.location.reload();

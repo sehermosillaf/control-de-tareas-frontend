@@ -12,7 +12,7 @@
     <ion-segment class="ion-margin">Panel de administrador</ion-segment>
 
     <ion-grid class="grid-tareas">
-      <ion-row>
+      <ion-row class="ion-justify-content-around">
         <ion-col size="6" size-md="4" size-sm="3" size-xs="auto">
           <ion-card class="logged-user-card">
             <ion-card-title>
@@ -44,7 +44,7 @@
               <ion-label>Tareas atrasadas: 3 </ion-label>
             </ion-item>
             <ion-item>
-              <ion-button>Ver informe PDF <ion-icon name="document-sharp"></ion-icon>
+              <ion-button (click)="generatePDF()">Ver informe PDF <ion-icon name="document-sharp"></ion-icon>
               </ion-button>
             </ion-item>
             <ion-item>
