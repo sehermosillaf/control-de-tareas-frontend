@@ -6,6 +6,7 @@ import { IonModal } from '@ionic/angular';
 import { UnitService } from '../services/unit.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PdfService } from '../services/pdf.service';
+import { TaskFlowService } from '../services/task-flow.service';
 @Component({
   selector: 'app-adminpanel',
   templateUrl: './adminpanel.page.html',
@@ -23,6 +24,7 @@ export class AdminpanelPage implements OnInit {
   userTasks: any;
   tasks: any;
   isModalOpen = false;
+  flujos: any;
 
   companyID = localStorage.getItem;
   declinedTaskCount: any;
@@ -32,7 +34,8 @@ export class AdminpanelPage implements OnInit {
     private unitService: UnitService,
     private route: ActivatedRoute,
     private router: Router,
-    private pdfService: PdfService
+    private pdfService: PdfService,
+    private flujoService: TaskFlowService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -45,9 +48,6 @@ export class AdminpanelPage implements OnInit {
       this.loggedUser = resp;
       console.log(resp);
     });
-    // this.userService.getAllUsers().subscribe((resp) => {
-    //   this.userList = resp;
-    // });
     this.userService.getUsersByUnit(this.userUnitID).subscribe((resp) => {
       this.userList = resp;
       console.log(resp);
@@ -60,6 +60,10 @@ export class AdminpanelPage implements OnInit {
     });
     this.unitService.getUnitByCompany(this.companyID).subscribe((resp) => {
       this.unitList = resp;
+    });
+    this.flujoService.getFlows().subscribe((resp) => {
+      console.log(resp);
+      this.flujos = resp;
     });
   }
   tasksByUser(id) {
@@ -101,6 +105,13 @@ export class AdminpanelPage implements OnInit {
     localStorage.removeItem('userID');
     localStorage.clear();
     this.router.navigate(['/login']);
+  }
+  execFlow() {
+    Swal.fire({
+      title: 'Executando...',
+      icon: 'success',
+      heightAuto: false,
+    });
   }
 
   generatePDF() {

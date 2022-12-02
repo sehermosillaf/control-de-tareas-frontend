@@ -6,6 +6,7 @@ import { TasksService } from '../services/tasks.service';
 import * as moment from 'moment';
 import { SubtasksService } from '../services/subtasks.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TaskFlowService } from '../services/task-flow.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -28,10 +29,12 @@ export class HomePage implements OnInit {
   minDate = moment().format();
   fechaInicio: any;
   fechaTermino: any;
+  flujos: any;
   constructor(
     private userService: UsersService,
     private taskService: TasksService,
     private subtaskService: SubtasksService,
+    private flujoService: TaskFlowService,
     private router: Router
   ) {}
 
@@ -65,6 +68,7 @@ export class HomePage implements OnInit {
       this.subtask = resp;
     });
   }
+
   declineTask() {
     const declinedTask = {
       idTarea: Number(this.clickedTaskID),
@@ -81,6 +85,7 @@ export class HomePage implements OnInit {
       });
     });
   }
+
   terminar() {
     Swal.fire({
       icon: 'success',

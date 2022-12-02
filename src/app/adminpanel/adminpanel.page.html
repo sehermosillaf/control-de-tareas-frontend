@@ -10,26 +10,32 @@
   <ion-content [fullscreen]="true">
 
     <ion-segment class="ion-margin">Panel de administrador</ion-segment>
-
-    <ion-grid class="grid-tareas">
-      <ion-row class="ion-justify-content-around">
+    <ion-grid size="4">
+      <ion-row>
         <ion-col size="6" size-md="4" size-sm="3" size-xs="auto">
-          <ion-card class="logged-user-card">
-            <ion-card-title>
-              {{loggedUser.nombre + ' ' + loggedUser.apellido}}
-            </ion-card-title>
-            <ion-card-content>
-              <h3>{{loggedUser.roles[0]?.nombre}}</h3>
-              <h3>{{loggedUser.unidad.empresa.nombre}}</h3>
-              <h3>{{loggedUser.unidad.nombre}}</h3>
-            </ion-card-content>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>
+                <ion-card-title>{{loggedUser.nombre}} {{loggedUser.apellido}}</ion-card-title>
+              </ion-card-subtitle>
+              <div class="ion-padding">{{loggedUser.roles[0]?.nombre}}</div>
+              <div class="ion-padding">{{loggedUser.unidad.nombre}}</div>
+              <div class="ion-padding">{{loggedUser.unidad.empresa.nombre}}</div>
+            </ion-card-header>
           </ion-card>
         </ion-col>
-        <ion-col size="6" size-md="4" size-sm="3" size-xs="auto">
-          <app-modal></app-modal>
-          <app-modal-unidad></app-modal-unidad>
+        <ion-col size="6" size-md="2" size-sm="4" size-xs="auto">
+          <ion-list class="acciones">
+            <h5 class="ion-text-center">Acciones</h5>
+            <ion-item>
+              <app-modal></app-modal>
+            </ion-item>
+            <ion-item>
+              <app-modal-unidad></app-modal-unidad>
+            </ion-item>
+          </ion-list>
         </ion-col>
-        <ion-col size="6" size-md="4" size-sm="3" size-xs="auto">
+        <ion-col size="6" size-md="4" size-sm="4" size-xs="auto">
           <ion-list class="lista-tareas">
             <ion-item>
               <ion-label>Tareas rechazadas: {{declinedTaskCount}}</ion-label>
@@ -53,12 +59,26 @@
             </ion-item>
           </ion-list>
         </ion-col>
+        <ion-col class="ion-margin" size="6" size-md="1" size-sm="2" size-xs="auto">
+          <ion-card class="ion-padding" *ngFor="let flows of flujos">
+            <ion-card-title>
+              Flujos
+            </ion-card-title>
+            <ion-card-content>
+              <h2>{{flows.nombre}}</h2>
+              <h3>{{flows.descripcion}}</h3>
+            </ion-card-content>
+            <ion-button (click)="execFlow()"> Ejecutar Flujo <ion-icon name="power-sharp"></ion-icon>
+            </ion-button>
+          </ion-card>
+        </ion-col>
       </ion-row>
-    </ion-grid>
-    <ion-label class="ion-padding">Usuarios</ion-label>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="6" size-md="4" size-sm="3" size-xs="auto" *ngFor="let users of userList">
+
+
+      <ion-row class="ion-margin-top second-row-margin-top">
+        <ion-segment>Usuarios</ion-segment>
+        <ion-label class="ion-text-center"></ion-label>
+        <ion-col size="auto" size-md="4" size-sm="4" size-xs="auto" *ngFor="let users of userList">
           <ion-card>
             <ion-card-header>
               <ion-card-title>{{users.nombre + ' ' + users.apellido}}</ion-card-title>

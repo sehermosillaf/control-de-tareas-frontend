@@ -16,9 +16,7 @@ ion-button {
   width: fit-content;
 }
 
-.grid-tareas{
-  width: fit-content;
-}
+
 ion-card {
   border-radius: 10px;
   -webkit-box-shadow: -1px 10px 15px 0px rgba(0, 0, 0, 0.75);
@@ -31,7 +29,17 @@ ion-card {
   margin: 0 auto;
   padding: 10px;
 }
-.lista-tareas {
+
+.acciones{
   width: fit-content;
-  margin: auto;
+  margin: 0auto -10px 0;
+}
+
+.lista-tareas{
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.second-row-margin-top{
+  margin-top: 50px;
 }
