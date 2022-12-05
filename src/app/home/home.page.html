@@ -2,7 +2,9 @@
   <ion-toolbar>
     <ion-title>¡Bienvenido, {{user.nombre}}! </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="logout()" color="danger" fill="solid">Cerrar session</ion-button>
+      <ion-button (click)="logout()" color="danger" fill="solid">
+        <ion-icon name="power-sharp"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 
@@ -18,6 +20,7 @@
       <h3>{{user.roles[0]?.nombre}}</h3>
       <h3>{{user.unidad.empresa.nombre}}</h3>
       <h3>{{user.unidad.nombre}}</h3>
+      <h3>{{user.email}}</h3>
     </ion-card-content>
     <ion-button size="small">
       <ion-icon name="pencil-sharp"></ion-icon>
@@ -30,7 +33,7 @@
   <ng-container>
     <ion-grid>
       <ion-row>
-        <ion-col size="4" size-md="3" size-lg="4" *ngFor="let tasks of tasksUser">
+        <ion-col size="4" size-md="3" size-lg="4" size-xs="auto" *ngFor="let tasks of tasksUser">
           <ion-card (click)="getTareaID(tasks.id)">
             <ion-card-header>
               <ion-card-title>
@@ -53,11 +56,13 @@
               <ion-card-title *ngIf="tasks.subtareas[0]?.id > 0">Subtareas asociadas:</ion-card-title>
               <ng-container *ngFor="let subtask of tasks.subtareas">
                 <ion-card-subtitle>Nombre subtarea:{{subtask.nombre}}</ion-card-subtitle>
-                <ion-card-subtitle>Descripcion:{{subtask.descripcion}}</ion-card-subtitle>
+                <ion-card-subtitle>Descripcion:{{subtask.descripcion}}
+                </ion-card-subtitle>
               </ng-container>
             </ion-card-content>
             <ion-button expand="fill" (click)="setOpen(true)" color="danger" size="small">Rechazar</ion-button>
-            <ion-button expand="fill" (click)="openDetails(true)" color="primary" size="small">Subtareas
+            <ion-button expand="fill" (click)="openDetails(true)" color="primary" size="small">
+              <ion-icon name="add-sharp"></ion-icon> Subtareas
             </ion-button>
             <ion-button expand="fill" (click)="terminar()" color="success" size="small">Terminar</ion-button>
             <ion-button size="small">

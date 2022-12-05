@@ -2,7 +2,9 @@
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="end">
-        <ion-button (click)="logout()" color="danger" fill="solid" class="ion-margin">Cerrar session</ion-button>
+        <ion-button (click)="logout()" color="danger" fill="solid" class="ion-margin">
+          <ion-icon name="power-sharp"></ion-icon>
+        </ion-button>
       </ion-buttons>
       <ion-title>Bienvenido {{loggedUser.nombre}}!</ion-title>
     </ion-toolbar>
@@ -11,7 +13,7 @@
 
     <ion-segment class="ion-margin">Panel de administrador</ion-segment>
     <ion-grid size="4">
-      <ion-row>
+      <ion-row class="ion-margin">
         <ion-col size="6" size-md="4" size-sm="3" size-xs="auto">
           <ion-card>
             <ion-card-header>
@@ -41,7 +43,7 @@
               <ion-label>Tareas rechazadas: {{declinedTaskCount}}</ion-label>
             </ion-item>
             <ion-item>
-              <ion-label>Tareas con mas de 7 dias: 2 </ion-label>
+              <ion-label>Tareas a tiempo: 2 </ion-label>
             </ion-item>
             <ion-item>
               <ion-label>Tareas con menos de 7 dias: 3 </ion-label>
@@ -59,16 +61,26 @@
             </ion-item>
           </ion-list>
         </ion-col>
-        <ion-col class="ion-margin" size="6" size-md="1" size-sm="2" size-xs="auto">
-          <ion-card class="ion-padding" *ngFor="let flows of flujos">
+      </ion-row>
+      <ion-row class="ion-margin">
+        <ion-col size="6" size-md="3" size-sm="2" size-xs="auto" *ngFor="let flows of flujos">
+          <ion-card class="ion-padding flujos">
             <ion-card-title>
-              Flujos
+              {{flows.nombre}}
             </ion-card-title>
+            <ion-card-subtitle>{{flows.descripcion}}</ion-card-subtitle>
             <ion-card-content>
-              <h2>{{flows.nombre}}</h2>
-              <h3>{{flows.descripcion}}</h3>
+              <ng-container *ngFor="let tareas of flows.tareas">
+                <h2>{{tareas.nombre}}</h2>
+                <h3>{{tareas.descripcion}}</h3>
+              </ng-container>
             </ion-card-content>
-            <ion-button (click)="execFlow()"> Ejecutar Flujo <ion-icon name="power-sharp"></ion-icon>
+
+            <ion-button (click)="execFlow()" size="small"> Ejecutar Flujo <ion-icon name="power-sharp">
+              </ion-icon>
+            </ion-button>
+            <ion-button (click)="deleteFlow()" color="danger" size="small">
+              <ion-icon name="trash-sharp"></ion-icon>
             </ion-button>
           </ion-card>
         </ion-col>
@@ -117,7 +129,7 @@
             </ion-modal>
           </ion-card>
         </ion-col>
-        <ion-col size="6" size-md="4" size-sm="3" size-xs="1">
+        <ion-col size="6" size-md="4" size-sm="3" size-xs="auto">
           <ion-card class="ion-margin ion-justify-content-center">
             <ng-container *ngFor="let units of unitList">
               <ion-card-header>

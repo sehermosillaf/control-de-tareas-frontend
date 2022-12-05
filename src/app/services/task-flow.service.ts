@@ -11,4 +11,7 @@ export class TaskFlowService {
   getFlows() {
     return this.http.get(this.url);
   }
+  insertFlow(flujo) {
+    return this.http.post(this.url, flujo);
+  }
 }

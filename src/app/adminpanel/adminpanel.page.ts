@@ -108,7 +108,15 @@ export class AdminpanelPage implements OnInit {
   }
   execFlow() {
     Swal.fire({
-      title: 'Executando...',
+      title: 'Ejecutando...',
+      icon: 'success',
+      heightAuto: false,
+    });
+  }
+
+  deleteFlow() {
+    Swal.fire({
+      title: 'Eliminando...',
       icon: 'success',
       heightAuto: false,
     });
