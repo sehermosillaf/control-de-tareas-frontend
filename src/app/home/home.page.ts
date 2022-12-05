@@ -36,7 +36,11 @@ export class HomePage implements OnInit {
     private subtaskService: SubtasksService,
     private flujoService: TaskFlowService,
     private router: Router
-  ) {}
+  ) {
+    this.taskService.updateTaskState().subscribe((resp) => {
+      console.log(resp);
+    });
+  }
 
   ngOnInit() {
     this.userService.getUserByID(this.lsUserID).subscribe((resp) => {
@@ -120,6 +124,7 @@ export class HomePage implements OnInit {
       console.log(resp);
       console.log(subtask);
     });
+    this.taskService.updateTaskState();
   }
 
   isWeekday = (dateString: string) => {
