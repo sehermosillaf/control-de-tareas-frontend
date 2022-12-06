@@ -10,6 +10,7 @@ import { AdminpanelPage } from './adminpanel.page';
 import { ModalComponent } from '../components/modal/modal.component';
 import { ModalUnidadComponent } from '../components/modal-unidad/modal-unidad.component';
 import { FlujosComponent } from '../components/flujos/flujos.component';
+
 @NgModule({
   imports: [
     CommonModule,

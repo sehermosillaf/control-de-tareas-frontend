@@ -10,6 +10,7 @@ ion-card-subtitle {
 
 ion-card {
   width: fit-content;
+  padding: 5px;
 }
 
 ion-button {
@@ -42,4 +43,29 @@ ion-card {
 
 .second-row-margin-top{
   margin-top: 50px;
+}
+
+.red-circle{
+  width: 18px;
+  height: 18px;
+  background: rgb(255, 0, 13);
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+}
+.yellow-circle{
+    width: 18px;
+    height: 18px;
+    background: rgb(251, 255, 0);
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+.green-circle{
+  width: 18px;
+  height: 18px;
+  background: rgb(3, 255, 16);
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
 }

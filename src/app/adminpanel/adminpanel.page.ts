@@ -28,6 +28,9 @@ export class AdminpanelPage implements OnInit {
 
   companyID = localStorage.getItem;
   declinedTaskCount: any;
+  expiredTaskCount: any;
+  alertTaskCount: any;
+  validTaskCount: any;
   constructor(
     private userService: UsersService,
     private taskService: TasksService,
@@ -44,19 +47,22 @@ export class AdminpanelPage implements OnInit {
     this.taskService.declinedTaskCount(this.userUnitID).subscribe((resp) => {
       this.declinedTaskCount = resp;
     });
+    this.taskService.expiredTaskCount(this.userUnitID).subscribe((resp) => {
+      this.expiredTaskCount = resp;
+    });
+    this.taskService.validTaskCount(this.userUnitID).subscribe((resp) => {
+      this.validTaskCount = resp;
+    });
+    this.taskService.alertTaskCount(this.userUnitID).subscribe((resp) => {
+      this.alertTaskCount = resp;
+    });
     this.userService.getUserByID(this.userID).subscribe((resp) => {
       this.loggedUser = resp;
       console.log(resp);
     });
-    this.userService.getUsersByUnit(this.userUnitID).subscribe((resp) => {
+    this.userService.getFuncByUnit(this.userUnitID).subscribe((resp) => {
       this.userList = resp;
       console.log(resp);
-    });
-    this.userService.getFunc().subscribe((resp) => {
-      this.funcUserList = resp;
-    });
-    this.taskService.getAllTasks().subscribe((resp) => {
-      this.tasks = resp;
     });
     this.unitService.getUnitByCompany(this.companyID).subscribe((resp) => {
       this.unitList = resp;

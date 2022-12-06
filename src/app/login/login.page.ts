@@ -12,8 +12,8 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  email: any;
-  password: any;
+  email: string;
+  password: string;
   user: any;
   error: '';
 

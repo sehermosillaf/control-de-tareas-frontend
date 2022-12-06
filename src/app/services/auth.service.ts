@@ -9,7 +9,7 @@ export class AuthService {
 
   login(email, password) {
     return this.http.post<Response>(
-      'http://localhost:8080/api/users/login',
+      'http://localhost:8080/api/usuarios/login',
       { email, password },
       { responseType: 'json' }
     );

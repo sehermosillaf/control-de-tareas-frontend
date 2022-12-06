@@ -12,7 +12,7 @@ import { UnitService } from 'src/app/services/unit.service';
 })
 export class ModalComponent implements OnInit {
   @ViewChild(IonModal) modal: IonModal;
-  nombre: any = '';
+  nombre: any;
   apellido: any;
   email: any;
   pass: any;

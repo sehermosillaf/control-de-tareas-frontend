@@ -26,6 +26,15 @@ export class TasksService {
   declinedTaskCount(id) {
     return this.http.get(this.url + `unidad/rechazadas/${id}`);
   }
+  expiredTaskCount(id) {
+    return this.http.get(this.url + `unidad/atrasadas/${id}`);
+  }
+  validTaskCount(id) {
+    return this.http.get(this.url + `unidad/enplazo/${id}`);
+  }
+  alertTaskCount(id) {
+    return this.http.get(this.url + `unidad/alerta/${id}`);
+  }
   updateTaskState() {
     return this.http.get(this.url + 'estado');
   }
