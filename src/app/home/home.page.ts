@@ -90,12 +90,16 @@ export class HomePage implements OnInit {
     });
   }
 
-  terminar() {
-    Swal.fire({
-      icon: 'success',
-      title: 'Tarea terminada',
-      text: 'Se ha terminado la tarea con exito',
-      heightAuto: false,
+  terminar(id) {
+    console.log(id);
+    this.taskService.completeTask(id).subscribe((resp) => {
+      console.log(id);
+      Swal.fire({
+        icon: 'success',
+        title: 'Tarea terminada',
+        text: 'Se ha terminado la tarea con exito',
+        heightAuto: false,
+      });
     });
   }
 

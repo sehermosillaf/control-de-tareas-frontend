@@ -31,6 +31,7 @@ export class AdminpanelPage implements OnInit {
   expiredTaskCount: any;
   alertTaskCount: any;
   validTaskCount: any;
+  completedTaskCOunt: any;
   constructor(
     private userService: UsersService,
     private taskService: TasksService,
@@ -41,6 +42,9 @@ export class AdminpanelPage implements OnInit {
     private flujoService: TaskFlowService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.taskService.updateTaskState().subscribe((resp) => {
+      console.log(resp);
+    });
   }
 
   ngOnInit() {
@@ -55,6 +59,9 @@ export class AdminpanelPage implements OnInit {
     });
     this.taskService.alertTaskCount(this.userUnitID).subscribe((resp) => {
       this.alertTaskCount = resp;
+    });
+    this.taskService.completedTaskCount(this.userUnitID).subscribe((resp) => {
+      this.completedTaskCOunt = resp;
     });
     this.userService.getUserByID(this.userID).subscribe((resp) => {
       this.loggedUser = resp;

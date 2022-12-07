@@ -35,8 +35,14 @@ export class TasksService {
   alertTaskCount(id) {
     return this.http.get(this.url + `unidad/alerta/${id}`);
   }
+  completedTaskCount(id) {
+    return this.http.get(this.url + `unidad/terminadas/${id}`);
+  }
   updateTaskState() {
     return this.http.get(this.url + 'estado');
+  }
+  completeTask(idTarea) {
+    return this.http.post(this.url + `terminar/${idTarea}`, null);
   }
   getTaskAutor(idTarea) {
     return this.http.get(this.url + `creador/${idTarea}`);

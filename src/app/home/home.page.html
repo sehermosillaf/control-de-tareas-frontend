@@ -34,7 +34,7 @@
     <ion-grid>
       <ion-row>
         <ion-col size="4" size-md="3" size-lg="4" size-xs="auto" *ngFor="let tasks of tasksUser">
-          <ion-card (click)="getTareaID(tasks.id)">
+          <ion-card>
             <ion-card-header>
               <ion-card-title>
                 Nombre: {{tasks.nombre}}
@@ -47,7 +47,7 @@
               <h3>Fecha de inicio: {{tasks.fechaInicio.slice(0,10) + ' hora: ' + tasks.fechaInicio.slice(11,16)}}</h3>
               <h3>Fecha de termino: {{tasks.fechaTermino.slice(0,10) + ' hora: ' + tasks.fechaTermino.slice(11,16)}}
               </h3>
-              <h3 *ngIf="tasks.estado.nombre?.length > 1">Estado: {{tasks.estado.descripcion}}</h3>
+              <h3 *ngIf="tasks.estado.nombre?.length > 1">Estado: {{tasks.estado.nombre}}</h3>
               <div id="red-circle" *ngIf="tasks.estado.id === 3"></div>
               <div id="yellow-circle" *ngIf="tasks.estado.id === 2"></div>
               <div id="green-circle" *ngIf="tasks.estado.id === 1"></div>
@@ -65,7 +65,7 @@
             <ion-button expand="fill" (click)="openDetails(true)" color="primary" size="small">
               <ion-icon name="add-sharp"></ion-icon> Subtareas
             </ion-button>
-            <ion-button expand="fill" (click)="terminar()" color="success" size="small">Terminar</ion-button>
+            <ion-button expand="fill" (click)="terminar(tasks.id)" color="success" size="small">Terminar</ion-button>
             <ion-button size="small">
               <ion-icon name="pencil-sharp"></ion-icon>
             </ion-button>
