@@ -12,7 +12,7 @@ import { UnitService } from 'src/app/services/unit.service';
 })
 export class ModalComponent implements OnInit {
   @ViewChild(IonModal) modal: IonModal;
-  unitId = localStorage.getItem('userUnit');
+  companyID = localStorage.getItem('companyID');
   nombre: any;
   apellido: any;
   email: any;
@@ -29,7 +29,8 @@ export class ModalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.unitService.getUnitByCompany(this.unitId).subscribe((resp) => {
+    this.unitService.getUnitByCompany(this.companyID).subscribe((resp) => {
+      console.log(resp);
       this.unitList = resp;
     });
   }
