@@ -47,8 +47,8 @@ export class HomePage implements OnInit {
       this.user = resp;
     });
     this.taskService.getTasksByUser(this.lsUserID).subscribe((resp) => {
+      console.log(resp);
       this.tasksUser = resp;
-      console.log(this.tasksUser);
     });
   }
   setOpen(isOpen: boolean) {

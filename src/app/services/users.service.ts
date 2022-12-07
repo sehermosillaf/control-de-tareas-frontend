@@ -20,7 +20,10 @@ export class UsersService {
     return this.http.get(this.url + `unit/${id}`);
   }
   getFuncByUnit(id) {
-    return this.http.get(this.url + `unit/${id}/func/`);
+    return this.http.get(this.url + `unit/${id}/func`);
+  }
+  getFuncByCompany(id) {
+    return this.http.get(this.url + `empresa/${id}/func`);
   }
   getEmailByUserID(id) {
     return this.http.get(this.url + `mail/${id}`);

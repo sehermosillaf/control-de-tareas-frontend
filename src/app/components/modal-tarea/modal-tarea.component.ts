@@ -31,6 +31,7 @@ export class ModalTareaComponent implements OnInit {
   currentSelectedUser = undefined;
   email: any;
   loggedUser = localStorage.getItem('userID');
+  companyID = localStorage.getItem('companyID');
   loggedUserUnit = localStorage.getItem('userUnit');
 
   constructor(
@@ -39,7 +40,11 @@ export class ModalTareaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userService.getFunc().subscribe((resp) => {
+    // this.userService.getFunc().subscribe((resp) => {
+    //   this.funcList = resp;
+    // });
+    this.userService.getFuncByCompany(this.companyID).subscribe((resp) => {
+      console.log(resp);
       this.funcList = resp;
     });
   }

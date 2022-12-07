@@ -37,7 +37,7 @@
         <ion-item>
           <ion-select [compareWith]="compareWith" placeholder="Selecciona un responsable"
             (ionChange)="handleChange($event)">
-            <ion-select-option *ngFor="let user of funcList" [value]="user">{{ user.nombre_completo }}
+            <ion-select-option *ngFor="let user of funcList" [value]="user">{{ user.nombre}} {{ user.apellido}}
             </ion-select-option>
           </ion-select>
         </ion-item>
