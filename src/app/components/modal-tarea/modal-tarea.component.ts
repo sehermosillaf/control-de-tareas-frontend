@@ -33,7 +33,7 @@ export class ModalTareaComponent implements OnInit {
   loggedUser = localStorage.getItem('userID');
   companyID = localStorage.getItem('companyID');
   loggedUserUnit = localStorage.getItem('userUnit');
-
+  responsable: any;
   constructor(
     private taskService: TasksService,
     private userService: UsersService
@@ -70,7 +70,7 @@ export class ModalTareaComponent implements OnInit {
       fechaCreacion: this.minDate,
       fechaInicio: this.fechaInicio,
       fechaTermino: this.fechaTermino,
-      usuarioResponsable: this.currentSelectedUser.usuario_ID,
+      usuarioResponsable: this.responsable,
       usuarioCreador: Number(this.loggedUser),
       unidadID: Number(this.loggedUserUnit),
     };

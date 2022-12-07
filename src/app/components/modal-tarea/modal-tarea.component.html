@@ -35,9 +35,9 @@
       </ion-item>
       <ion-list>
         <ion-item>
-          <ion-select [compareWith]="compareWith" placeholder="Selecciona un responsable"
-            (ionChange)="handleChange($event)">
-            <ion-select-option *ngFor="let user of funcList" [value]="user">{{ user.nombre}} {{ user.apellido}}
+          <ion-select [(ngModel)]="responsable" placeholder="Selecciona un responsable">
+            (ionDismiss)="pushLog('ionDismiss fired')"
+            <ion-select-option *ngFor="let user of funcList" [value]="user.id">{{ user.nombre}} {{ user.apellido}}
             </ion-select-option>
           </ion-select>
         </ion-item>

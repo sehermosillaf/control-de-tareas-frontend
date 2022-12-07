@@ -47,7 +47,7 @@
               <h3>Fecha de inicio: {{tasks.fechaInicio.slice(0,10) + ' hora: ' + tasks.fechaInicio.slice(11,16)}}</h3>
               <h3>Fecha de termino: {{tasks.fechaTermino.slice(0,10) + ' hora: ' + tasks.fechaTermino.slice(11,16)}}
               </h3>
-              <h3 *ngIf="tasks.estado.nombre?.length > 1">Estado: {{tasks.estado.nombre}}</h3>
+              <h3 *ngIf="tasks.estado.id===4 || tasks.estado.id===5">Estado: {{tasks.estado.nombre}}</h3>
               <div id="red-circle" *ngIf="tasks.estado.id === 3"></div>
               <div id="yellow-circle" *ngIf="tasks.estado.id === 2"></div>
               <div id="green-circle" *ngIf="tasks.estado.id === 1"></div>
