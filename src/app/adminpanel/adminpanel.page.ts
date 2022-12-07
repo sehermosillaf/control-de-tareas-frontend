@@ -18,6 +18,7 @@ export class AdminpanelPage implements OnInit {
   lsUserID = localStorage.getItem('userID');
   userID = localStorage.getItem('userID');
   userUnitID = localStorage.getItem('userUnit');
+  companyID = localStorage.getItem('companyID');
   funcUserList: any;
   userList: any;
   unitList: any;
@@ -25,8 +26,6 @@ export class AdminpanelPage implements OnInit {
   tasks: any;
   isModalOpen = false;
   flujos: any;
-
-  companyID = localStorage.getItem;
   declinedTaskCount: any;
   expiredTaskCount: any;
   alertTaskCount: any;
@@ -67,7 +66,7 @@ export class AdminpanelPage implements OnInit {
       this.loggedUser = resp;
       console.log(resp);
     });
-    this.userService.getFuncByUnit(this.userUnitID).subscribe((resp) => {
+    this.userService.getFuncByCompany(this.companyID).subscribe((resp) => {
       this.userList = resp;
       console.log(resp);
     });
