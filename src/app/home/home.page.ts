@@ -34,7 +34,6 @@ export class HomePage implements OnInit {
     private userService: UsersService,
     private taskService: TasksService,
     private subtaskService: SubtasksService,
-    private flujoService: TaskFlowService,
     private router: Router
   ) {
     this.taskService.updateTaskState().subscribe((resp) => {
@@ -49,6 +48,9 @@ export class HomePage implements OnInit {
     this.taskService.getTasksByUser(this.lsUserID).subscribe((resp) => {
       console.log(resp);
       this.tasksUser = resp;
+    });
+    this.taskService.updateTaskState().subscribe((resp) => {
+      console.log(resp);
     });
   }
   setOpen(isOpen: boolean) {

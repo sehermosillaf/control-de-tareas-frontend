@@ -40,9 +40,6 @@ export class ModalTareaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.userService.getFunc().subscribe((resp) => {
-    //   this.funcList = resp;
-    // });
     this.userService.getFuncByCompany(this.companyID).subscribe((resp) => {
       console.log(resp);
       this.funcList = resp;
