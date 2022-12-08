@@ -30,15 +30,18 @@ export class HomePage implements OnInit {
   fechaInicio: any;
   fechaTermino: any;
   flujos: any;
+
   constructor(
     private userService: UsersService,
     private taskService: TasksService,
     private subtaskService: SubtasksService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.taskService.updateTaskState().subscribe((resp) => {
       console.log(resp);
     });
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit() {
@@ -76,13 +79,15 @@ export class HomePage implements OnInit {
   }
 
   declineTask() {
-    const declinedTask = {
+    const tareaRechazada = {
       idTarea: Number(this.clickedTaskID),
       justificacion: this.justificacion,
-      idResponsable: Number(this.taskAutor),
+      idResponsable: Number(this.taskAutor)
     };
-    console.log(this.declineTask);
-    this.taskService.declineTask(declinedTask).subscribe((resp) => {
+    console.log(tareaRechazada);
+    this.taskService.declineTask(tareaRechazada).subscribe((resp) => {
+      console.log(resp);
+      this.ngOnInit();
       Swal.fire({
         icon: 'success',
         title: 'Tarea rechazada',
@@ -95,6 +100,7 @@ export class HomePage implements OnInit {
   terminar(id) {
     console.log(id);
     this.taskService.completeTask(id).subscribe((resp) => {
+      this.ngOnInit();
       console.log(id);
       Swal.fire({
         icon: 'success',

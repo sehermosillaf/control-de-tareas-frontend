@@ -33,7 +33,7 @@
   <ng-container>
     <ion-grid>
       <ion-row>
-        <ion-col size="4" size-md="3" size-lg="4" size-xs="auto" *ngFor="let tasks of tasksUser">
+        <ion-col size="4" size-md="4" size-lg="4" size-xs="auto" *ngFor="let tasks of tasksUser">
           <ion-card>
             <ion-card-header>
               <ion-card-title>
@@ -61,7 +61,7 @@
                 </ion-card-subtitle>
               </ng-container>
             </ion-card-content>
-            <ion-button expand="fill" (click)="setOpen(true)" color="danger" size="small">Rechazar</ion-button>
+            <ion-button expand="fill" (click)="setOpen(true); getTareaID(tasks.id)" color="danger" size="small">Rechazar</ion-button>
             <ion-button expand="fill" (click)="openDetails(true)" color="primary" size="small">
               <ion-icon name="add-sharp"></ion-icon> Subtareas
             </ion-button>
