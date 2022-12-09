@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnChanges, ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { UnitService } from 'src/app/services/unit.service';
@@ -10,30 +10,36 @@ import Swal from 'sweetalert2';
   templateUrl: './modal-unidad.component.html',
   styleUrls: ['./modal-unidad.component.scss'],
 })
-export class ModalUnidadComponent implements OnInit {
+export class ModalUnidadComponent implements OnChanges {
   @ViewChild(IonModal) modal: IonModal;
   nombre: any;
   descripcion: any;
   funcion: any;
   isModalOpen = false;
+  idEmpresa = localStorage.getItem('companyID');
   constructor(private unitService: UnitService) {}
 
-  ngOnInit() {}
+  ngOnChanges() {
+    // create header using child_id
+    console.log();
+  }
 
   addUnit() {
     const newUnit = {
       nombre: this.nombre,
       descripcion: this.descripcion,
       funcion: this.funcion,
+      idEmpresa: Number(this.idEmpresa),
     };
-    this.unitService.addUnit(newUnit).subscribe((resp) => {
+    console.log(newUnit);
+    this.unitService.insertUnit(newUnit).subscribe((resp) => {
       Swal.fire({
         title: 'Unidad creado!',
         text: 'Unidad creado correctamente!',
         icon: 'success',
         heightAuto: false,
       });
-      this.refresh();
+
       console.log(resp);
     });
   }

@@ -21,4 +21,7 @@ export class UnitService {
   addUnit(newUnit: any) {
     return this.http.post(this.url, newUnit);
   }
+  insertUnit(newUnit: any) {
+    return this.http.post(this.url + 'insertar', newUnit);
+  }
 }
