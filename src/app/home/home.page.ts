@@ -82,7 +82,7 @@ export class HomePage implements OnInit {
     const tareaRechazada = {
       idTarea: Number(this.clickedTaskID),
       justificacion: this.justificacion,
-      idResponsable: Number(this.taskAutor)
+      idResponsable: Number(this.taskAutor),
     };
     console.log(tareaRechazada);
     this.taskService.declineTask(tareaRechazada).subscribe((resp) => {
@@ -126,7 +126,10 @@ export class HomePage implements OnInit {
       fechaTermino: this.fechaTermino,
       idTarea: this.clickedTaskID,
     };
+    console.log(subtask);
     this.subtaskService.insertSubtask(subtask).subscribe((resp) => {
+      console.log(resp);
+      this.ngOnInit();
       Swal.fire({
         icon: 'success',
         title: 'Subtarea agregada',
