@@ -61,8 +61,9 @@
                 </ion-card-subtitle>
               </ng-container>
             </ion-card-content>
-            <ion-button expand="fill" (click)="setOpen(true); getTareaID(tasks.id)" color="danger" size="small">Rechazar</ion-button>
-            <ion-button expand="fill" (click)="openDetails(true)" color="primary" size="small">
+            <ion-button expand="fill" (click)="setOpen(true); getTareaID(tasks.id)" color="danger"
+              size="small">Rechazar</ion-button>
+            <ion-button expand="fill" (click)="openDetails(true); getTareaID(tasks.id)" color="primary" size="small">
               <ion-icon name="add-sharp"></ion-icon> Subtareas
             </ion-button>
             <ion-button expand="fill" (click)="terminar(tasks.id)" color="success" size="small">Terminar</ion-button>
